@@ -1,3 +1,72 @@
 <resources>
-    <string name="app_name">PizzaOrderForm</string>
+<!--    <string-array name="english_values">-->
+        <string name="app_name">Pizza Order Form</string>
+        <string name="welcomeTitle">Pizza Your Way</string>
+        <string name="getStarted">Get Started</string>
+        <string name="viewPastOrders">View Past Orders</string>
+
+        <string name="pizzaBaseTitle">Choose Your Base</string>
+        <string name="size">Size</string>
+        <string name="size1">SM</string>
+        <string name="size2">M</string>
+        <string name="size3">L</string>
+        <string name="size4">XL</string>
+        <string name="size1Price">$11.99</string>
+        <string name="size2Price">$13.99</string>
+        <string name="size3Price">$16.99</string>
+        <string name="size4Price">$19.99</string>
+
+        <string name="txtCrust">Crust</string>
+        <string name="txtCrust1">Thin</string>
+        <string name="txtCrust2">Regular</string>
+        <string name="txtCrust3">Stuffed</string>
+
+        <string name="txtCheese">Cheese</string>
+        <string name="txtCheese1">Light</string>
+        <string name="txtCheese2">Regular</string>
+        <string name="txtCheese3">Extra</string>
+
+        <string name="toppingSelection">Topping Selection</string>
+
+        <string name="toppingsTitle">Choose Your Toppings</string>
+        <string name="toppingsInfo1">Select up to 3</string>
+        <string name="toppingsInfo2">Tap and hold to adjust amounts</string>
+        <string name="topping1">Pepperoni</string>
+        <string name="topping2">Bacon</string>
+        <string name="topping3">Ham</string>
+        <string name="topping4">Sausage</string>
+        <string name="topping5">Mushrooms</string>
+        <string name="topping6">Parmesan</string>
+        <string name="topping7">Roasted Garlic</string>
+        <string name="topping8">Basil</string>
+        <string name="topping9">Onions</string>
+        <string name="topping10">Pickles</string>
+        <string name="topping11">Tomatoes</string>
+        <string name="topping12">Olives</string>
+        <string name="topping13">Pineapple</string>
+        <string name="topping14">Banana Peppers</string>
+        <string name="topping15">Anchovies</string>
+        <string name="topping16">Green Peppers</string>
+        <string name="back">Back</string>
+        <string name="deliveryDetails">Delivery Details</string>
+
+        <string name="nameLabel">Name:</string>
+        <string name="phoneLabel">Phone Number:</string>
+        <string name="address1Label">Address Line 1:</string>
+        <string name="address2Label">Address Line 2:</string>
+        <string name="cityLabel">City:</string>
+        <string name="postalLabel">Postal Code:</string>
+        <string name="review">Review Order</string>
+
+        <string name="orderDetailsTitle">Order Details</string>
+        <string name="orderId">Order ID:</string>
+        <string name="edit">edit</string>
+        <string name="tax">Tax:</string>
+        <string name="total">Total:</string>
+        <string name="confirm">Confirm and Place Order</string>
+
+        <string name="confirmationTitle">Thank You For Your Order</string>
+        <string name="date">Placed on:</string>
+        <string name="backToMenu">Back to Menu</string>
+<!--    </string-array>-->
 </resources>
