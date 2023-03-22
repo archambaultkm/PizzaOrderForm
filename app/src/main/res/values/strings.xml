@@ -1,5 +1,5 @@
 <resources>
-<!--    <string-array name="english_values">-->
+        <!--    <string-array name="english_values">-->
         <string name="app_name">Pizza Order Form</string>
         <string name="welcomeTitle">Pizza Your Way</string>
         <string name="getStarted">Get Started</string>
@@ -68,5 +68,5 @@
         <string name="confirmationTitle">Thank You For Your Order</string>
         <string name="date">Placed on:</string>
         <string name="backToMenu">Back to Menu</string>
-<!--    </string-array>-->
+        <!--    </string-array>-->
 </resources>
