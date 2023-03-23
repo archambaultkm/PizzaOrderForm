@@ -8,6 +8,7 @@
     tools:context=".PizzaToppingsActivity">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbToppingsTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?actionBarSize"
@@ -27,6 +28,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
+        android:id="@+id/tvToppingsInfo1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -38,6 +40,7 @@
     </TextView>
 
     <TextView
+        android:id="@+id/tvToppingsInfo2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -67,6 +70,7 @@
             android:gravity="center_vertical">
 
             <Button
+                android:id="@+id/btnTopping1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
@@ -88,6 +92,7 @@
                 app:backgroundTint="@null" />
 
             <Button
+                android:id="@+id/btnTopping2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
@@ -109,6 +114,7 @@
                 app:backgroundTint="@null" />
 
             <Button
+                android:id="@+id/btnTopping3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
@@ -130,6 +136,7 @@
                 app:backgroundTint="@null" />
 
             <Button
+                android:id="@+id/btnTopping4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
@@ -159,6 +166,7 @@
             android:gravity="center_vertical">
 
             <Button
+                android:id="@+id/btnTopping5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
@@ -180,6 +188,7 @@
                 app:backgroundTint="@null" />
 
             <Button
+                android:id="@+id/btnTopping6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
@@ -201,6 +210,7 @@
                 app:backgroundTint="@null" />
 
             <Button
+                android:id="@+id/btnTopping7"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
@@ -222,6 +232,7 @@
                 app:backgroundTint="@null" />
 
             <Button
+                android:id="@+id/btnTopping8"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
@@ -251,6 +262,7 @@
             android:gravity="center_vertical">
 
             <Button
+                android:id="@+id/btnTopping9"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
@@ -272,6 +284,7 @@
                 app:backgroundTint="@null" />
 
             <Button
+                android:id="@+id/btnTopping10"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
@@ -293,6 +306,7 @@
                 app:backgroundTint="@null" />
 
             <Button
+                android:id="@+id/btnTopping11"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
@@ -314,6 +328,7 @@
                 app:backgroundTint="@null" />
 
             <Button
+                android:id="@+id/btnTopping12"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
@@ -343,6 +358,7 @@
             android:gravity="center_vertical">
 
             <Button
+                android:id="@+id/btnTopping13"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
@@ -364,6 +380,7 @@
                 app:backgroundTint="@null" />
 
             <Button
+                android:id="@+id/btnTopping14"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
@@ -385,6 +402,7 @@
                 app:backgroundTint="@null" />
 
             <Button
+                android:id="@+id/btnTopping15"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
@@ -406,6 +424,7 @@
                 app:backgroundTint="@null" />
 
             <Button
+                android:id="@+id/btnTopping16"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
@@ -435,30 +454,32 @@
             android:gravity="bottom">
 
             <Button
+                android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
 
+                android:layout_margin="2dp"
                 android:layout_span="2"
                 android:layout_weight="1"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
                 android:text="@string/back"
                 android:textSize="16sp"
-                app:cornerRadius="50dp"/>
+                app:cornerRadius="50dp" />
 
             <Button
+                android:id="@+id/btnDeliveryDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
 
+                android:layout_margin="2dp"
                 android:layout_span="2"
                 android:layout_weight="1"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
                 android:text="@string/deliveryDetails"
                 android:textSize="16sp"
-                app:cornerRadius="50dp"/>
+                app:cornerRadius="50dp" />
 
         </TableRow>
 

@@ -9,6 +9,7 @@
     tools:context=".PizzaBaseActivity">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbPizzaBaseTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?actionBarSize"
@@ -28,6 +29,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
+        android:id="@+id/tvSize"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="0.5"
@@ -46,6 +48,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btnSize1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -60,6 +63,7 @@
         </Button>
 
         <Button
+            android:id="@+id/btnSize2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -74,6 +78,7 @@
         </Button>
 
         <Button
+            android:id="@+id/btnSize3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -88,6 +93,7 @@
         </Button>
 
         <Button
+            android:id="@+id/btnSize4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -104,11 +110,12 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tvCrust"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="0.5"
         android:gravity="bottom"
-        android:text="@string/txtCrust"
+        android:text="@string/crust"
         android:textColor="@color/slate_grey"
         android:textSize="24sp">
 
@@ -122,6 +129,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btnCrust1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -129,13 +137,14 @@
             android:background="@drawable/alternate_button"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="@string/txtCrust1"
+            android:text="@string/crust1"
             android:textColor="@color/slate_grey"
             app:backgroundTint="@null">
 
         </Button>
 
         <Button
+            android:id="@+id/btnCrust2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -143,13 +152,14 @@
             android:background="@drawable/alternate_button"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="@string/txtCrust2"
+            android:text="@string/crust2"
             android:textColor="@color/slate_grey"
             app:backgroundTint="@null">
 
         </Button>
 
         <Button
+            android:id="@+id/btnCrust3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -157,7 +167,7 @@
             android:background="@drawable/alternate_button"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="@string/txtCrust3"
+            android:text="@string/crust3"
             android:textColor="@color/slate_grey"
             app:backgroundTint="@null">
 
@@ -166,11 +176,12 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tvCheese"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="0.5"
         android:gravity="bottom"
-        android:text="@string/txtCheese"
+        android:text="@string/cheese"
         android:textColor="@color/slate_grey"
         android:textSize="24sp">
 
@@ -184,6 +195,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btnCheese1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -191,13 +203,14 @@
             android:background="@drawable/alternate_button"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="@string/txtCheese1"
+            android:text="@string/cheese1"
             android:textColor="@color/slate_grey"
             app:backgroundTint="@null">
 
         </Button>
 
         <Button
+            android:id="@+id/btnCheese2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -205,13 +218,14 @@
             android:background="@drawable/alternate_button"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="@string/txtCheese2"
+            android:text="@string/cheese2"
             android:textColor="@color/slate_grey"
             app:backgroundTint="@null">
 
         </Button>
 
         <Button
+            android:id="@+id/btnCheese3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -219,7 +233,7 @@
             android:background="@drawable/alternate_button"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="@string/txtCheese3"
+            android:text="@string/cheese3"
             android:textColor="@color/slate_grey"
             app:backgroundTint="@null">
 
@@ -228,6 +242,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnToppingSelection"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="end"

@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-        <!--    <string-array name="english_values">-->
         <string name="app_name">Pizza Order Form</string>
         <string name="welcomeTitle">Pizza Your Way</string>
         <string name="getStarted">Get Started</string>
@@ -11,26 +11,22 @@
         <string name="size2">M</string>
         <string name="size3">L</string>
         <string name="size4">XL</string>
-        <string name="size1Price">$11.99</string>
-        <string name="size2Price">$13.99</string>
-        <string name="size3Price">$16.99</string>
-        <string name="size4Price">$19.99</string>
 
-        <string name="txtCrust">Crust</string>
-        <string name="txtCrust1">Thin</string>
-        <string name="txtCrust2">Regular</string>
-        <string name="txtCrust3">Stuffed</string>
+        <string name="crust">Crust</string>
+        <string name="crust1">Thin</string>
+        <string name="crust2">Regular</string>
+        <string name="crust3">Stuffed</string>
 
-        <string name="txtCheese">Cheese</string>
-        <string name="txtCheese1">Light</string>
-        <string name="txtCheese2">Regular</string>
-        <string name="txtCheese3">Extra</string>
+        <string name="cheese">Cheese</string>
+        <string name="cheese1">Light</string>
+        <string name="cheese2">Regular</string>
+        <string name="cheese3">Extra</string>
 
         <string name="toppingSelection">Topping Selection</string>
 
         <string name="toppingsTitle">Choose Your Toppings</string>
         <string name="toppingsInfo1">Select up to 3</string>
-        <string name="toppingsInfo2">Tap and hold to adjust amounts</string>
+        <string name="toppingsInfo2">Tap and hold a topping to remove it</string>
         <string name="topping1">Pepperoni</string>
         <string name="topping2">Bacon</string>
         <string name="topping3">Ham</string>
@@ -61,12 +57,14 @@
         <string name="orderDetailsTitle">Order Details</string>
         <string name="orderId">Order ID:</string>
         <string name="edit">edit</string>
-        <string name="tax">Tax:</string>
-        <string name="total">Total:</string>
         <string name="confirm">Confirm and Place Order</string>
 
         <string name="confirmationTitle">Thank You For Your Order</string>
         <string name="date">Placed on:</string>
         <string name="backToMenu">Back to Menu</string>
-        <!--    </string-array>-->
+
+        <string name="orderRecordTitle">Your Past Pizzas</string>
+        <string name="orderNumber">Order Number</string>
+        <string name="view">view</string>
+        <string name="delete">delete</string>
 </resources>
