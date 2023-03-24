@@ -67,4 +67,178 @@
         <string name="orderNumber">Order Number</string>
         <string name="view">view</string>
         <string name="delete">delete</string>
+
+        <string-array name="en_mainactivity">
+<!--                <item>Pizza Order Form</item>-->
+                <item>Pizza Your Way</item>
+                <item>Get Started</item>
+                <item>View Past Orders</item>
+        </string-array>
+
+        <string-array name="nl_mainactivity">
+<!--                <item>Bestelformulier Voor Pizza\'s</item>-->
+                <item>Pizza op Jouw Manier</item>
+                <item>Begin</item>
+                <item>Bekijk Eerdere Bestellingen</item>
+        </string-array>
+
+        <string-array name="en_baseactivity">
+                <item>Choose Your Base</item>
+
+                <item>Size</item>
+                <item>SM</item>
+                <item>M</item>
+                <item>L</item>
+                <item>XL</item>
+
+                <item>Crust</item>
+                <item>Thin</item>
+                <item>Regular</item>
+                <item>Stuffed</item>
+
+                <item>Cheese</item>
+                <item>Light</item>
+                <item>Regular</item>
+                <item>Extra</item>
+
+                <item>Topping Selection</item>
+        </string-array>
+
+        <string-array name="nl_baseactivity">
+                <item>Kies je Basis</item>
+                <item>Maat</item>
+                <item>SM</item>
+                <item>M</item>
+                <item>L</item>
+                <item>XL</item>
+
+                <item>Korst</item>
+                <item>Dun</item>
+                <item>Normaal</item>
+                <item>Gevulde</item>
+
+                <item>Kaas</item>
+                <item>Licht</item>
+                <item>Normaal</item>
+                <item>Extra</item>
+
+                <item>Topping Selectie</item>
+        </string-array>
+
+        <string-array name="en_toppingsactivity">
+                <item>Choose Your Toppings</item>
+                <item>Select up to 3</item>
+                <item>Tap and hold a topping to remove it</item>
+
+                <item>Pepperoni</item>
+                <item>Bacon</item>
+                <item>Ham</item>
+                <item>Sausage</item>
+                <item>Mushrooms</item>
+                <item>Parmesan</item>
+                <item>Roasted Garlic</item>
+                <item>Basil</item>
+                <item>Onions</item>
+                <item>Pickles</item>
+                <item>Tomatoes</item>
+                <item>Olives</item>
+                <item>Pineapple</item>
+                <item>Banana Peppers</item>
+                <item>Anchovies</item>
+                <item>Green Peppers</item>
+
+                <item>Back</item>
+                <item>Delivery Details</item>
+        </string-array>
+
+        <string-array name="nl_toppingsactivity">
+                <item>Kies je Toppings</item>
+                <item>Selecteer maximaal 3</item>
+                <item>Blijf een topping aanraken om deze te verwijderen</item>
+
+                <item>Pepperoni</item>
+                <item>Spek</item>
+                <item>Ham</item>
+                <item>Worst</item>
+                <item>Paddestoelen</item>
+                <item>Parmezaanse</item>
+                <item>Geroosterde knoflook</item>
+                <item>Basilicum</item>
+                <item>Uien</item>
+                <item>Augerken</item>
+                <item>Tomaten</item>
+                <item>Olijven</item>
+                <item>Ananas</item>
+                <item>Bananenpeper</item>
+                <item>Ansjovis</item>
+                <item>Groene pepers</item>
+
+                <item>Terug</item>
+                <item>Verzendgegevens</item>
+        </string-array>
+
+        <string-array name="en_deliveryactivity">
+                <item>Your Delivery Details</item>
+
+                <item>Name:</item>
+                <item>Phone Number:</item>
+                <item>Address Line 1:</item>
+                <item>Address Line 2:</item>
+                <item>City:</item>
+                <item>Postal Code:</item>
+                <item>Review Order</item>
+        </string-array>
+
+        <string-array name="nl_deliveryactivity">
+                <item>Uw Bezorggegevens</item>
+
+                <item>Naam:</item>
+                <item>Telefoonnummer</item>
+                <item>Adres 1:</item>
+                <item>Adres 2:</item>
+                <item>stad:</item>
+                <item>Postcode:</item>
+                <item>Bestelling bekijken</item>
+        </string-array>
+
+        <string-array name="en_reviewactivity">
+                <item>Order Details</item>
+                <item>Order ID:</item>
+                <item>edit</item>
+                <item>Confirm and Place Order</item>
+        </string-array>
+
+        <string-array name="nl_reviewactivity">
+                <item>Bestel Details</item>
+                <item>Bestelling:</item>
+                <item>redigeren</item>
+                <item>Bevestigen en Bestellen</item>
+        </string-array>
+
+        <string-array name="en_confirmationactivity">
+                <item>Thank You For Your Order</item>
+                <item>Placed on:</item>
+                <item>Back to Menu</item>
+        </string-array>
+
+        <string-array name="nl_confirmationactivity">
+                <item>Bedankt voor je Bestelling</item>
+                <item>Geplaatst op:</item>
+                <item>Terug Naar Menu</item>
+        </string-array>
+
+        <string-array name="en_recordactivity">
+                <item>Your Past Pizzas</item>
+                <item>Order Number</item>
+                <item>view</item>
+                <item>delete</item>
+        </string-array>
+
+        <string-array name="nl_recordactivity">
+                <item>Je Vorige Pizza\'s</item>
+                <item>Bestelling: </item>
+                <item>overzicht</item>
+                <item>verwijderen</item>
+        </string-array>
+
 </resources>

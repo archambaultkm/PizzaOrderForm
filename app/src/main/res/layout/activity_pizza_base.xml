@@ -9,13 +9,14 @@
     tools:context=".PizzaBaseActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tbPizzaBaseTitle"
+        android:id="@+id/tbPizzaBase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?actionBarSize"
         android:theme="?actionBarTheme">
 
         <TextView
+            android:id="@+id/tvPizzaBaseTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

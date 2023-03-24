@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Pizza implements Serializable {
 
     //I would prefer to refactor these to enums
+    //values will start at 0
     private int size;
     private int crust;
     private int cheese;
