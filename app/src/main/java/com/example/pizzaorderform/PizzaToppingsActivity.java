@@ -23,8 +23,7 @@ public class PizzaToppingsActivity extends AppCompatActivity {
 
     private ArrayList<Button> toppingButtons = new ArrayList<>();
 
-    //this will be used to store toppings values
-    private ArrayList<Integer> pizzaToppings = new ArrayList<Integer>();
+    private int MAX_TOPPINGS = 3;
 
     private ArrayList<TextView> uiComponents = new ArrayList<>();
 
@@ -45,6 +44,15 @@ public class PizzaToppingsActivity extends AppCompatActivity {
         instantiateWidgets();
         addToLists();
         setListeners();
+
+        //make the topping buttons reflect the state of the pizza
+        for (int i=0; i< MAX_TOPPINGS;i++) {
+
+            if (i < pizza.getToppingsList().size()) {
+                toppingButtons.get(pizza.getToppingsList().get(i)).setBackground
+                        (getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
+            }
+        }
 
         //set string values:
         enStrings = getResources().getStringArray(R.array.en_toppingsactivity);
@@ -81,7 +89,6 @@ public class PizzaToppingsActivity extends AppCompatActivity {
 
                 Intent i = new Intent(PizzaToppingsActivity.this, PizzaBaseActivity.class);
 
-                //carry over count of correctly answered questions
                 i.putExtra("pizza", pizza);
 
                 startActivity(i);
@@ -124,10 +131,15 @@ public class PizzaToppingsActivity extends AppCompatActivity {
             //casting the view to a button allows using .getText()
             Button clickedButton = (Button) view;
 
-            clickedButton.setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
-
             //important that the buttons are in the same order as the toppings they represent in the string array
-            pizzaToppings.add(toppingButtons.indexOf(clickedButton) + 1);
+            if (pizza.getToppingsList().size() < MAX_TOPPINGS) {
+
+                clickedButton.setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
+                pizza.addTopping(toppingButtons.indexOf(clickedButton));
+
+            } else {
+                //TODO: add a toast that says max toppings reached
+            }
         }
     }; //end onToppingClicked
 
@@ -142,7 +154,7 @@ public class PizzaToppingsActivity extends AppCompatActivity {
             clickedButton.setBackground(getResources().getDrawable(R.drawable.alternate_button, getTheme()));
 
             //remove all occurences of the value associated with the button long clicked from the toppings array
-            pizzaToppings.removeAll(Arrays.asList(toppingButtons.indexOf(clickedButton) + 1));
+            pizza.deleteTopping(toppingButtons.indexOf(clickedButton));
 
             return true;
         }

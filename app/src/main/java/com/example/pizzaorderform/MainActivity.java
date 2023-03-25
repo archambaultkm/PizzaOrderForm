@@ -103,7 +103,8 @@ public class MainActivity extends AppCompatActivity {
         tglLanguage = findViewById(R.id.tglLanguage);
         tglLanguage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setLang(isChecked);
+                language = isChecked;
+                setLang(language);
             }
         });
     }

@@ -1,6 +1,8 @@
 package com.example.pizzaorderform;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Pizza implements Serializable {
 
@@ -10,9 +12,7 @@ public class Pizza implements Serializable {
     private int crust;
     private int cheese;
 
-    private int topping1;
-    private int topping2;
-    private int topping3;
+    private final ArrayList<Integer> toppingsList = new ArrayList<>();
 
     public int getSize() {
         return size;
@@ -38,28 +38,16 @@ public class Pizza implements Serializable {
         this.cheese = cheese;
     }
 
-    public int getTopping1() {
-        return topping1;
+    public ArrayList<Integer> getToppingsList() {
+        return toppingsList;
     }
 
-    public void setTopping1(int topping1) {
-        this.topping1 = topping1;
+    public void addTopping(int topping) {
+        toppingsList.add(topping);
     }
 
-    public int getTopping2() {
-        return topping2;
-    }
-
-    public void setTopping2(int topping2) {
-        this.topping2 = topping2;
-    }
-
-    public int getTopping3() {
-        return topping3;
-    }
-
-    public void setTopping3(int topping3) {
-        this.topping3 = topping3;
+    public void deleteTopping(int topping) {
+        toppingsList.removeAll(Arrays.asList(topping));
     }
 
     public Pizza() {};
