@@ -11,7 +11,6 @@ public class Pizza implements Serializable {
     private int size;
     private int crust;
     private int cheese;
-
     private final ArrayList<Integer> toppingsList = new ArrayList<>();
 
     public int getSize() {
@@ -51,4 +50,11 @@ public class Pizza implements Serializable {
     }
 
     public Pizza() {};
+
+    @Override
+    public String toString() {
+
+        //TODO this is where an enum or hash will be useful to get user-readable values
+        return size + "\n" + crust + "\n" + cheese + "\n" + Arrays.toString(toppingsList.toArray());
+    }
 }

@@ -53,6 +53,8 @@
         <string name="cityLabel">City:</string>
         <string name="postalLabel">Postal Code:</string>
         <string name="review">Review Order</string>
+        <string name="enValidationPrompt">Please update fields underlined in red and try again.</string>
+        <string name="nlValidationPrompt">Werk de rood onderstreepte velden bij en probeer het opnieuw.</string>
 
         <string name="orderDetailsTitle">Order Details</string>
         <string name="orderId">Order ID:</string>

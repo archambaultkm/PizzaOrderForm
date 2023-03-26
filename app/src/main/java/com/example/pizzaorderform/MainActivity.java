@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         enStrings = getResources().getStringArray(R.array.en_mainactivity);
         nlStrings = getResources().getStringArray(R.array.nl_mainactivity);
 
-        setWidgets();
+        initWidgets();
 
         //fetch stored data from sharedpreferences
         preferences = getSharedPreferences("LANG_PREFS", MODE_PRIVATE);
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    private void setWidgets() {
+    private void initWidgets() {
 
         uiComponents.add(tvWelcome = findViewById(R.id.tvWelcome));
 

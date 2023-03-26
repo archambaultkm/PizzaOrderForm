@@ -28,6 +28,7 @@ public class PizzaToppingsActivity extends AppCompatActivity {
     private ArrayList<TextView> uiComponents = new ArrayList<>();
 
     private Pizza pizza;
+    private Customer customer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,26 +40,59 @@ public class PizzaToppingsActivity extends AppCompatActivity {
 
         if (extras != null) {
             pizza = (Pizza) extras.getSerializable("pizza");
+            customer = (Customer) extras.getSerializable("customer");
         }
 
-        instantiateWidgets();
+        initWidgets();
         addToLists();
         setListeners();
 
-        //make the topping buttons reflect the state of the pizza
-        for (int i=0; i< MAX_TOPPINGS;i++) {
-
-            if (i < pizza.getToppingsList().size()) {
-                toppingButtons.get(pizza.getToppingsList().get(i)).setBackground
-                        (getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
-            }
-        }
+        initToppings();
 
         //set string values:
         enStrings = getResources().getStringArray(R.array.en_toppingsactivity);
         nlStrings = getResources().getStringArray(R.array.nl_toppingsactivity);
 
         setLang(MainActivity.getLanguage());
+    }
+
+    private void initToppings() {
+
+        //make the topping buttons reflect the state of the pizza
+        for (int i=0; i< MAX_TOPPINGS;i++) {
+            if (i < pizza.getToppingsList().size()) {
+                toppingButtons.get(pizza.getToppingsList().get(i)).setBackground
+                        (getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
+            }
+        }
+    }
+
+    private void initWidgets() {
+
+        tvToppingsTitle = findViewById(R.id.tvToppingsTitle);
+        tvToppingsInfo1 = findViewById(R.id.tvToppingsInfo1);
+        tvToppingsInfo2 = findViewById(R.id.tvToppingsInfo2);
+
+        btnBack = findViewById(R.id.btnBack);
+        btnDeliveryDetails = findViewById(R.id.btnDeliveryDetails);
+
+        //add each toppings button into an arraylist for easier reading/manipulation
+        toppingButtons.add(btnTopping1 = findViewById(R.id.btnTopping1));
+        toppingButtons.add(btnTopping2 = findViewById(R.id.btnTopping2));
+        toppingButtons.add(btnTopping3 = findViewById(R.id.btnTopping3));
+        toppingButtons.add(btnTopping4 = findViewById(R.id.btnTopping4));
+        toppingButtons.add(btnTopping5 = findViewById(R.id.btnTopping5));
+        toppingButtons.add(btnTopping6 = findViewById(R.id.btnTopping6));
+        toppingButtons.add(btnTopping7 = findViewById(R.id.btnTopping7));
+        toppingButtons.add(btnTopping8 = findViewById(R.id.btnTopping8));
+        toppingButtons.add(btnTopping9 = findViewById(R.id.btnTopping9));
+        toppingButtons.add(btnTopping10 = findViewById(R.id.btnTopping10));
+        toppingButtons.add(btnTopping11 = findViewById(R.id.btnTopping11));
+        toppingButtons.add(btnTopping12 = findViewById(R.id.btnTopping12));
+        toppingButtons.add(btnTopping13 = findViewById(R.id.btnTopping13));
+        toppingButtons.add(btnTopping14 = findViewById(R.id.btnTopping14));
+        toppingButtons.add(btnTopping15 = findViewById(R.id.btnTopping15));
+        toppingButtons.add(btnTopping16 = findViewById(R.id.btnTopping16));
     }
 
     private void addToLists() {
@@ -90,37 +124,25 @@ public class PizzaToppingsActivity extends AppCompatActivity {
                 Intent i = new Intent(PizzaToppingsActivity.this, PizzaBaseActivity.class);
 
                 i.putExtra("pizza", pizza);
+                i.putExtra("customer", customer);
 
                 startActivity(i);
             }
         });
-    }
-    private void instantiateWidgets() {
 
-        tvToppingsTitle = findViewById(R.id.tvToppingsTitle);
-        tvToppingsInfo1 = findViewById(R.id.tvToppingsInfo1);
-        tvToppingsInfo2 = findViewById(R.id.tvToppingsInfo2);
+        btnDeliveryDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        btnBack = findViewById(R.id.btnBack);
-        btnDeliveryDetails = findViewById(R.id.btnDeliveryDetails);
+                Intent i = new Intent(PizzaToppingsActivity.this, DeliveryDetailsActivity.class);
 
-        //add each toppings button into an arraylist for easier reading/manipulation
-        toppingButtons.add(btnTopping1 = findViewById(R.id.btnTopping1));
-        toppingButtons.add(btnTopping2 = findViewById(R.id.btnTopping2));
-        toppingButtons.add(btnTopping3 = findViewById(R.id.btnTopping3));
-        toppingButtons.add(btnTopping4 = findViewById(R.id.btnTopping4));
-        toppingButtons.add(btnTopping5 = findViewById(R.id.btnTopping5));
-        toppingButtons.add(btnTopping6 = findViewById(R.id.btnTopping6));
-        toppingButtons.add(btnTopping7 = findViewById(R.id.btnTopping7));
-        toppingButtons.add(btnTopping8 = findViewById(R.id.btnTopping8));
-        toppingButtons.add(btnTopping9 = findViewById(R.id.btnTopping9));
-        toppingButtons.add(btnTopping10 = findViewById(R.id.btnTopping10));
-        toppingButtons.add(btnTopping11 = findViewById(R.id.btnTopping11));
-        toppingButtons.add(btnTopping12 = findViewById(R.id.btnTopping12));
-        toppingButtons.add(btnTopping13 = findViewById(R.id.btnTopping13));
-        toppingButtons.add(btnTopping14 = findViewById(R.id.btnTopping14));
-        toppingButtons.add(btnTopping15 = findViewById(R.id.btnTopping15));
-        toppingButtons.add(btnTopping16 = findViewById(R.id.btnTopping16));
+                //TODO figure out a controller class so this poor pizza doesn't have to get passed through 7 intents
+                i.putExtra("pizza", pizza);
+                i.putExtra("customer", customer);
+
+                startActivity(i);
+            }
+        });
     }
 
     public View.OnClickListener onToppingClicked = new View.OnClickListener() {
@@ -138,7 +160,7 @@ public class PizzaToppingsActivity extends AppCompatActivity {
                 pizza.addTopping(toppingButtons.indexOf(clickedButton));
 
             } else {
-                //TODO: add a toast that says max toppings reached
+                //TODO: add a language-sensitive toast that says max toppings reached
             }
         }
     }; //end onToppingClicked

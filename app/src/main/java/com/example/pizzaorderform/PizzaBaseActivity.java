@@ -7,50 +7,60 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import java.util.ArrayList;
 
-//TODO:figure out how passing in a pizza to edit will work
 //TODO:disable the toppings button until they've picked a size
-//TODO:make the crust and cheese default to regular
 
 public class PizzaBaseActivity extends AppCompatActivity {
 
-    String[] enStrings;
-    String[] nlStrings;
+    String[] enStrings, nlStrings;
 
     private TextView tvPizzaBaseTitle, tvSize, tvCrust, tvCheese;
 
     private Button btnSize1, btnSize2, btnSize3, btnSize4, btnCrust1, btnCrust2, btnCrust3,
             btnCheese1, btnCheese2, btnCheese3, btnToppingSelection;
 
-    private ArrayList<Button> sizeButtons = new ArrayList<>();
-    private ArrayList<Button> crustButtons = new ArrayList<>();
-    private ArrayList<Button> cheeseButtons = new ArrayList<>();
+    private ArrayList<Button> sizeButtons, crustButtons, cheeseButtons;
 
-    ArrayList<TextView> uiComponents = new ArrayList<>();
+    private ArrayList<TextView> uiComponents = new ArrayList<>();
 
+    private Customer customer;
     private Pizza pizza;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pizza_base);
+
+        sizeButtons = new ArrayList<>();
+        crustButtons  = new ArrayList<>();
+        cheeseButtons  = new ArrayList<>();
 
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
             pizza = (Pizza) extras.getSerializable("pizza");
+            customer = (Customer) extras.getSerializable("customer");
         }
 
         //set string values:
         enStrings = getResources().getStringArray(R.array.en_baseactivity);
         nlStrings = getResources().getStringArray(R.array.nl_baseactivity);
 
-        instantiateWidgets();
+        initWidgets();
         addToLists();
         setListeners();
+
+        initPizza();
+
+        //set the string values displayed in views based on the language chosen in mainactivity
+        setLang(MainActivity.getLanguage());
+
+    }// end onCreate
+
+    private void initPizza() {
 
         //make ui reflect the current pizza
         if (pizza == null) {
@@ -71,13 +81,9 @@ public class PizzaBaseActivity extends AppCompatActivity {
             crustButtons.get(pizza.getCrust()).setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
             cheeseButtons.get(pizza.getCheese()).setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
         }
+    }
 
-        //set the string values displayed in views based on the language chosen in mainactivity
-        setLang(MainActivity.getLanguage());
-
-    }// end onCreate
-
-    private void instantiateWidgets() {
+    private void initWidgets() {
 
         tvPizzaBaseTitle = findViewById(R.id.tvPizzaBaseTitle);
         tvSize = findViewById(R.id.tvSize);
@@ -96,19 +102,6 @@ public class PizzaBaseActivity extends AppCompatActivity {
         btnCheese1=findViewById(R.id.btnCheese1);
         btnCheese2=findViewById(R.id.btnCheese2);
         btnCheese3=findViewById(R.id.btnCheese3);
-
-        sizeButtons.add(btnSize1);
-        sizeButtons.add(btnSize2);
-        sizeButtons.add(btnSize3);
-        sizeButtons.add(btnSize4);
-
-        crustButtons.add(btnCrust1);
-        crustButtons.add(btnCrust2);
-        crustButtons.add(btnCrust3);
-
-        cheeseButtons.add(btnCheese1);
-        cheeseButtons.add(btnCheese2);
-        cheeseButtons.add(btnCheese3);
 
         btnToppingSelection=findViewById(R.id.btnToppingSelection);
     }
@@ -169,6 +162,7 @@ public class PizzaBaseActivity extends AppCompatActivity {
 
                 //carry over count of correctly answered questions
                 i.putExtra("pizza", pizza);
+                i.putExtra("customer", customer);
 
                 startActivity(i);
             }
@@ -276,42 +270,5 @@ public class PizzaBaseActivity extends AppCompatActivity {
                 uiComponents.get(i).setText(enStrings[i]);
             }
         }
-//        if (dutch) {
-//
-//            tvPizzaBaseTitle.setText(nlStrings[0]);
-//            tvSize.setText(nlStrings[1]);
-//            btnSize1.setText(nlStrings[2]);
-//            btnSize2.setText(nlStrings[3]);
-//            btnSize3.setText(nlStrings[4]);
-//            btnSize4.setText(nlStrings[5]);
-//            tvCrust.setText(nlStrings[6]);
-//            btnCrust1.setText(nlStrings[7]);
-//            btnCrust2.setText(nlStrings[8]);
-//            btnCrust3.setText(nlStrings[9]);
-//            tvCheese.setText(nlStrings[10]);
-//            btnCheese1.setText(nlStrings[11]);
-//            btnCheese2.setText(nlStrings[12]);
-//            btnCheese3.setText(nlStrings[13]);
-//            btnToppingSelection.setText(nlStrings[14]);
-//
-//        } else {
-//
-//            tvPizzaBaseTitle.setText(enStrings[0]);
-//            tvSize.setText(enStrings[1]);
-//            btnSize1.setText(enStrings[2]);
-//            btnSize2.setText(enStrings[3]);
-//            btnSize3.setText(enStrings[4]);
-//            btnSize4.setText(enStrings[5]);
-//            tvCrust.setText(enStrings[6]);
-//            btnCrust1.setText(enStrings[7]);
-//            btnCrust2.setText(enStrings[8]);
-//            btnCrust3.setText(enStrings[9]);
-//            tvCheese.setText(enStrings[10]);
-//            btnCheese1.setText(enStrings[11]);
-//            btnCheese2.setText(enStrings[12]);
-//            btnCheese3.setText(enStrings[13]);
-//            btnToppingSelection.setText(enStrings[14]);
-//        }
     }
-
 }
