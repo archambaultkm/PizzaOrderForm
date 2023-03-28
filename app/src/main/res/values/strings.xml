@@ -221,12 +221,14 @@
                 <item>Thank You For Your Order</item>
                 <item>Placed on:</item>
                 <item>Back to Menu</item>
+                <item>View Past Orders</item>
         </string-array>
 
         <string-array name="nl_confirmationactivity">
                 <item>Bedankt voor je Bestelling</item>
                 <item>Geplaatst op:</item>
                 <item>Terug Naar Menu</item>
+                <item>Bekijk eerdere bestellingen</item>
         </string-array>
 
         <string-array name="en_recordactivity">

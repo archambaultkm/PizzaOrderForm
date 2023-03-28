@@ -41,6 +41,11 @@ public class Pizza implements Serializable {
         return toppingsList;
     }
 
+    public int getTopping1() {return toppingsList.get(0);}
+    public int getTopping2() {return toppingsList.get(1);} //TODO add try/catch for not null check or another solution
+    public int getTopping3() {return toppingsList.get(2);}
+
+
     public void addTopping(int topping) {
         toppingsList.add(topping);
     }

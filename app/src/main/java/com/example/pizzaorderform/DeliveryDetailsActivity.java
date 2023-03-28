@@ -59,8 +59,7 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
 
             txtName.setText(customer.getName());
             txtPhone.setText(customer.getPhoneNumber());
-            txtAddress1.setText(customer.getAddress1());
-            txtAddress2.setText(customer.getAddress2());
+            txtAddress1.setText(customer.getAddress());
             txtCity.setText(customer.getCity());
             txtPostalCode.setText(customer.getPostalCode());
         }
@@ -221,13 +220,6 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
         return (!(enteredVal == null) && !(enteredVal.trim().isEmpty()));
     }
 
-    //TODO: this only needs to be validated if they type something, for now I'm just not validating but fix later
-//    private boolean validateAddress2(String enteredVal) {
-//
-//        //can either be empty or a number/letters
-//        return (enteredVal == null || enteredVal.trim().isEmpty());
-//    }
-
     private boolean validateCity(String enteredVal) {
 
         //has to not be null or empty (more in-depth could check api for city names? idk)
@@ -243,14 +235,13 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
 
     private void createCustomer() {
 
-        //only make a new one if you're ot working on data passed from another activity
+        //only make a new one if you're not working on data passed from another activity
         if (customer == null)
             customer = new Customer();
 
         customer.setName(String.valueOf(txtName.getText()));
         customer.setPhoneNumber(String.valueOf(txtPhone.getText()));
-        customer.setAddress1(String.valueOf(txtAddress1.getText()));
-        customer.setAddress2(String.valueOf(txtAddress2.getText()));
+        customer.setAddress(String.valueOf(txtAddress1.getText()));
         customer.setCity(String.valueOf(txtCity.getText()));
         customer.setPostalCode(String.valueOf(txtPostalCode.getText()));
     }

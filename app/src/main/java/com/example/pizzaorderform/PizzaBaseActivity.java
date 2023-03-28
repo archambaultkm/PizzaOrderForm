@@ -174,6 +174,9 @@ public class PizzaBaseActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
 
+            //this only needs to happen the first time one is clicked but idk how to do that
+            btnToppingSelection.setEnabled(true);
+
             //casting the view to a button allows using .getText()
             Button clickedButton = (Button) view;
 
