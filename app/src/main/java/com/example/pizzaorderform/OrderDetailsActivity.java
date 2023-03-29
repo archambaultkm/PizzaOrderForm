@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class OrderDetailsActivity extends AppCompatActivity {
 
@@ -22,6 +23,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
     private Pizza pizza;
     private Customer customer;
+    private Order order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +71,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
         uiComponents.add(tvOrderDetailsTitle);
         uiComponents.add(tvOrderID);
         uiComponents.add(btnEdit);
-//        uiComponents.add(tvPizzaDetails);
-//        uiComponents.add(tvCustomerDetails);
         uiComponents.add(btnConfirm);
     }
 
@@ -93,10 +93,23 @@ public class OrderDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //TODO add all the stuff for making a new order and setting the id/date
-                //TODO add all the database stuff
+                //get the current date for the record
+                Date date = new Date();
 
-                startActivity(new Intent(OrderDetailsActivity.this, ConfirmationActivity.class));
+                order = new Order();
+                order.setPizza(pizza);
+                order.setCustomer(customer);
+                order.setDate(date);
+
+                //add this order to the list for review
+                OrderRecordActivity.orders.add(order);
+
+                Intent i = new Intent(OrderDetailsActivity.this, ConfirmationActivity.class);
+
+                //the time of ordering will be shown on the thank-you page
+                i.putExtra("order_date", date);
+
+                startActivity(i);
             }
         });
     }

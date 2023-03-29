@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/selection_background2"
+    android:backgroundTint="#B0FFFFFF"
+    android:backgroundTintMode="src_over"
     android:orientation="vertical"
     android:padding="5dp"
     tools:context=".PizzaBaseActivity">
@@ -20,7 +23,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@color/white"
             android:text="@string/pizzaBaseTitle"
             android:textColor="@color/slate_grey"
             android:textSize="35sp"
@@ -29,22 +31,26 @@
         </TextView>
     </androidx.appcompat.widget.Toolbar>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
     <TextView
         android:id="@+id/tvSize"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
+        android:layout_weight="1"
         android:gravity="bottom"
         android:text="@string/size"
         android:textColor="@color/slate_grey"
-        android:textSize="24sp">
+        android:textSize="34sp">
 
     </TextView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -59,6 +65,7 @@
             android:paddingBottom="20dp"
             android:text="@string/size1"
             android:textColor="@color/slate_grey"
+            android:textSize="16sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -74,6 +81,7 @@
             android:paddingBottom="20dp"
             android:text="@string/size2"
             android:textColor="@color/slate_grey"
+            android:textSize="16sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -89,6 +97,7 @@
             android:paddingBottom="20dp"
             android:text="@string/size3"
             android:textColor="@color/slate_grey"
+            android:textSize="16sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -104,6 +113,7 @@
             android:paddingBottom="20dp"
             android:text="@string/size4"
             android:textColor="@color/slate_grey"
+            android:textSize="16sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -114,18 +124,18 @@
         android:id="@+id/tvCrust"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
+        android:layout_weight="1"
         android:gravity="bottom"
         android:text="@string/crust"
         android:textColor="@color/slate_grey"
-        android:textSize="24sp">
+        android:textSize="34sp">
 
     </TextView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -140,6 +150,7 @@
             android:paddingBottom="10dp"
             android:text="@string/crust1"
             android:textColor="@color/slate_grey"
+            android:textSize="16sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -155,6 +166,7 @@
             android:paddingBottom="10dp"
             android:text="@string/crust2"
             android:textColor="@color/slate_grey"
+            android:textSize="16sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -170,6 +182,7 @@
             android:paddingBottom="10dp"
             android:text="@string/crust3"
             android:textColor="@color/slate_grey"
+            android:textSize="16sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -180,18 +193,18 @@
         android:id="@+id/tvCheese"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
+        android:layout_weight="1"
         android:gravity="bottom"
         android:text="@string/cheese"
         android:textColor="@color/slate_grey"
-        android:textSize="24sp">
+        android:textSize="34sp">
 
     </TextView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -206,6 +219,7 @@
             android:paddingBottom="10dp"
             android:text="@string/cheese1"
             android:textColor="@color/slate_grey"
+            android:textSize="16sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -221,6 +235,7 @@
             android:paddingBottom="10dp"
             android:text="@string/cheese2"
             android:textColor="@color/slate_grey"
+            android:textSize="16sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -236,11 +251,16 @@
             android:paddingBottom="10dp"
             android:text="@string/cheese3"
             android:textColor="@color/slate_grey"
+            android:textSize="16sp"
             app:backgroundTint="@null">
 
         </Button>
 
     </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
 
     <Button
         android:id="@+id/btnToppingSelection"
@@ -252,6 +272,7 @@
         android:insetTop="10dp"
         android:insetBottom="10dp"
         android:text="@string/toppingSelection"
+        android:textSize="16sp"
         app:cornerRadius="50dp">
 
     </Button>

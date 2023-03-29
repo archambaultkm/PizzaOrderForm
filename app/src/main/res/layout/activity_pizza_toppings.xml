@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/selection_background2"
+    android:backgroundTint="#B0FFFFFF"
+    android:backgroundTintMode="src_over"
     android:orientation="vertical"
     tools:context=".PizzaToppingsActivity">
 
@@ -19,7 +22,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@color/white"
             android:text="@string/toppingsTitle"
             android:textColor="@color/slate_grey"
             android:textSize="35sp"

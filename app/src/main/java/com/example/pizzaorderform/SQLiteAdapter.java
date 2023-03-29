@@ -241,7 +241,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
 
                     Order order = new Order(orderID, pizza, customer, date);
                     //add that order to the list used for recyclerview
-                    Order.orderList.add(order); //TODO probably move this list out to the activity, not the order class? idk
+                    OrderRecordActivity.orders.add(order); //TODO probably move this list out to the activity, not the order class? idk
                 }
             }
         }

@@ -17,9 +17,9 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
 
     private String[] enStrings, nlStrings;
 
-    private TextView tvDeliveryDetailsTitle, tvName, tvPhone, tvAddress1, tvAddress2, tvCity, tvPostalCode;
+    private TextView tvDeliveryDetailsTitle, tvName, tvPhone, tvAddress1, tvCity, tvPostalCode;
 
-    private EditText txtName, txtPhone, txtAddress1, txtAddress2, txtCity, txtPostalCode;
+    private EditText txtName, txtPhone, txtAddress1, txtCity, txtPostalCode;
 
     private Button btnReviewOrder;
 
@@ -74,8 +74,6 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
         txtPhone = findViewById(R.id.txtPhone);
         tvAddress1 = findViewById(R.id.tvAddress1);
         txtAddress1 = findViewById(R.id.txtAddress1);
-        tvAddress2 = findViewById(R.id.tvAddress2);
-        txtAddress2 = findViewById(R.id.txtAddress2);
         tvCity = findViewById(R.id.tvCity);
         txtCity = findViewById(R.id.txtCity);
         tvPostalCode = findViewById(R.id.tvPostalCode);
@@ -90,7 +88,6 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
         uiComponents.add(tvName);
         uiComponents.add(tvPhone);
         uiComponents.add(tvAddress1);
-        uiComponents.add(tvAddress2);
         uiComponents.add(tvCity);
         uiComponents.add(tvPostalCode);
         uiComponents.add(btnReviewOrder);
@@ -102,7 +99,6 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
         txtName.setOnFocusChangeListener(validateEntry);
         txtPhone.setOnFocusChangeListener(validateEntry);
         txtAddress1.setOnFocusChangeListener(validateEntry);
-        txtAddress2.setOnFocusChangeListener(validateEntry);
         txtCity.setOnFocusChangeListener(validateEntry);
         txtPostalCode.setOnFocusChangeListener(validateEntry);
 
@@ -157,10 +153,6 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
 
                         underlineText(validateAddress(enteredText), txtAddress1);
                         break;
-                    case R.id.txtAddress2:
-
-                        //validate Address2
-                        break;
                     case R.id.txtCity:
 
                         underlineText(validateCity(enteredText), txtCity);
@@ -177,9 +169,11 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
     private void underlineText(Boolean valid, EditText text) {
 
         if (valid) {
-            text.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.correct)));
+            //text.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.correct)));
+            text.setBackground(getResources().getDrawable(R.drawable.edit_text_style_correct, getTheme()));
         } else {
-            text.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.incorrect)));
+            //text.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.incorrect)));
+            text.setBackground(getResources().getDrawable(R.drawable.edit_text_style_incorrect, getTheme()));
         }
     }
 

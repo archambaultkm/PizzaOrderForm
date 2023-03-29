@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Customer implements Serializable {
 
-    private int id;
+    private static int id;
     private String phoneNumber;
     private String name;
     private String address;
@@ -53,10 +53,14 @@ public class Customer implements Serializable {
         this.postalCode = postalCode;
     }
 
-    public Customer() {}
+    public Customer() {
+
+        id++;
+    }
 
     public Customer(int id, String phoneNumber, String name, String address, String city, String postalCode) {
 
+        //this constructor gets called from the database, so the ids should be unique and autoincrementing/match what was passed in on save
         this.id = id;
         this.phoneNumber = phoneNumber;
         this.name = name;

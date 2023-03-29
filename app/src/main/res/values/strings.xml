@@ -71,17 +71,17 @@
         <string name="delete">delete</string>
 
         <string-array name="en_mainactivity">
-<!--                <item>Pizza Order Form</item>-->
-                <item>Pizza Your Way</item>
+                <item>Pizza Order Form</item>
                 <item>Get Started</item>
                 <item>View Past Orders</item>
+                <item>NL</item>
         </string-array>
 
         <string-array name="nl_mainactivity">
-<!--                <item>Bestelformulier Voor Pizza\'s</item>-->
-                <item>Pizza op Jouw Manier</item>
+                <item>Bestelformulier Voor Pizza\'s</item>
                 <item>Begin</item>
                 <item>Bekijk Eerdere Bestellingen</item>
+                <item>EN</item>
         </string-array>
 
         <string-array name="en_baseactivity">
@@ -185,7 +185,6 @@
                 <item>Name:</item>
                 <item>Phone Number:</item>
                 <item>Address Line 1:</item>
-                <item>Address Line 2:</item>
                 <item>City:</item>
                 <item>Postal Code:</item>
                 <item>Review Order</item>
@@ -197,7 +196,6 @@
                 <item>Naam:</item>
                 <item>Telefoonnummer</item>
                 <item>Adres 1:</item>
-                <item>Adres 2:</item>
                 <item>stad:</item>
                 <item>Postcode:</item>
                 <item>Bestelling bekijken</item>
@@ -233,16 +231,18 @@
 
         <string-array name="en_recordactivity">
                 <item>Your Past Pizzas</item>
-                <item>Order Number</item>
-                <item>view</item>
-                <item>delete</item>
+                <item>Back to Menu</item>
+<!--                <item>Order Number</item>-->
+<!--                <item>view</item>-->
+<!--                <item>delete</item>-->
         </string-array>
 
         <string-array name="nl_recordactivity">
                 <item>Je Vorige Pizza\'s</item>
-                <item>Bestelling: </item>
-                <item>overzicht</item>
-                <item>verwijderen</item>
+                <item>Terug Naar Menu</item>
+                <!--                <item>Bestelling: </item>-->
+<!--                <item>overzicht</item>-->
+<!--                <item>verwijderen</item>-->
         </string-array>
 
 </resources>

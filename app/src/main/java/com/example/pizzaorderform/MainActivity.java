@@ -37,16 +37,18 @@ public class MainActivity extends AppCompatActivity {
         nlStrings = getResources().getStringArray(R.array.nl_mainactivity);
 
         initWidgets();
+        addToLists();
+        setListeners();
 
         //fetch stored data from sharedpreferences
         preferences = getSharedPreferences("LANG_PREFS", MODE_PRIVATE);
 
         //true will be dutch, default will be false (english)
         language = preferences.getBoolean("language", false);
-        setLang(language);
-
         //make the toggle button reflect the saved language
         tglLanguage.setChecked(language);
+
+        setLang(language);
 
     }//end oncreate
 
@@ -80,27 +82,44 @@ public class MainActivity extends AppCompatActivity {
 
     private void initWidgets() {
 
-        uiComponents.add(tvWelcome = findViewById(R.id.tvWelcome));
+        tvWelcome = findViewById(R.id.tvWelcome);
 
-        uiComponents.add(btnGetStarted = findViewById(R.id.btnGetStarted));
+        btnGetStarted = findViewById(R.id.btnGetStarted);
+
+        btnViewPastOrders = findViewById(R.id.btnViewPastOrders);
+        //TODO:add onclick for viewpastorders
+
+        tglLanguage = findViewById(R.id.tglLanguage);
+
+    }
+
+    private void addToLists() {
+
+        uiComponents.add(tvWelcome);
+        uiComponents.add(btnGetStarted);
+        uiComponents.add(btnViewPastOrders);
+        uiComponents.add(tglLanguage);
+    }
+
+    private void setListeners() {
+
         btnGetStarted.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent(MainActivity.this, PizzaBaseActivity.class);
-
-                //pass along language info
-                //i.putExtra("language", language);
-
-                startActivity(i);
+                startActivity(new Intent(MainActivity.this, PizzaBaseActivity.class));
             }
-        });//end onclick
+        });
 
-        uiComponents.add(btnViewPastOrders = findViewById(R.id.btnViewPastOrders));
-        //TODO:add onclick for viewpastorders
+        btnViewPastOrders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        tglLanguage = findViewById(R.id.tglLanguage);
+                startActivity(new Intent(MainActivity.this, OrderRecordActivity.class));
+            }
+        });
+
         tglLanguage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 language = isChecked;
@@ -110,10 +129,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //if they've checked the switch, language changes to dutch. if they've unchecked change back to english.
-    //TODO: add text value for switch here and in strings.xml
     private void setLang(boolean dutch) {
 
-        //this isn't elegant but I can't figure out how to loop thorugh them without casting to view
         if (dutch) {
 
             for (int i=0;i<uiComponents.size();i++) {

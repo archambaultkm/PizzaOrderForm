@@ -8,7 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class ConfirmationActivity extends AppCompatActivity {
 
@@ -20,11 +24,19 @@ public class ConfirmationActivity extends AppCompatActivity {
 
     private ArrayList<TextView> uiComponents = new ArrayList<>();
 
+    private Date dateOrdered;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation);
+
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+            dateOrdered = (Date) extras.getSerializable("order_date");
+        }
 
         initWidgets();
         addToLists();
@@ -34,6 +46,9 @@ public class ConfirmationActivity extends AppCompatActivity {
         nlStrings = getResources().getStringArray(R.array.nl_confirmationactivity);
 
         setLang(MainActivity.getLanguage());
+
+        //TODO format the date
+        tvDateOrdered.setText(tvDateOrdered.getText()+" "+String.valueOf(dateOrdered));
     }
 
     private void initWidgets() {

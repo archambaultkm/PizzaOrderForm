@@ -8,7 +8,7 @@ public class Pizza implements Serializable {
 
     //I would prefer to refactor these to enums
     //values will start at 0
-    private int id;
+    private static int id;
     private int size;
     private int crust;
     private int cheese;
@@ -48,14 +48,19 @@ public class Pizza implements Serializable {
         toppingsList.add(topping);
     }
 
+    //calling delete topping will remove all of that topping type from the array
     public void deleteTopping(int topping) {
         toppingsList.removeAll(Arrays.asList(topping));
     }
 
-    public Pizza() {};
+    public Pizza() {
+
+        id++;
+    }
 
     public Pizza(int id, int size, int crust, int cheese, ArrayList<Integer> toppingsList){
 
+        //this constructor gets called from the database, so the ids should be unique and autoincrementing/match what was passed in on save
         this.id = id;
         this.size = size;
         this.crust = crust;

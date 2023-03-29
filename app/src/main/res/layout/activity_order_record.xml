@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background2"
+    android:backgroundTint="#52545863"
+    android:backgroundTintMode="src_over"
     android:orientation="vertical"
     tools:context=".OrderRecordActivity">
 
@@ -15,12 +18,12 @@
         android:theme="?actionBarTheme">
 
         <TextView
+            android:id="@+id/tvOrderRecordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@color/white"
             android:text="@string/orderRecordTitle"
-            android:textColor="@color/slate_grey"
+            android:textColor="@color/white"
             android:textSize="35sp"
             android:textStyle="bold">
 
@@ -30,8 +33,23 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvOrders"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/item_order" />
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:divider="@color/slate_grey"
+        android:dividerHeight="1px"
+        app:layoutManager="LinearLayoutManager">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/btnMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="end"
+        android:layout_weight="0.8"
+        android:text="@string/backToMenu"
+        android:textSize="20sp"
+        app:cornerRadius="50dp" />
 
 
 </LinearLayout>
