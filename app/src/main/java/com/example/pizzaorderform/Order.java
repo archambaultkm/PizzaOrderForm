@@ -10,11 +10,12 @@ public class Order {
     private Customer customer;
     private Date date;
 
+    public int getID() {return id;}
     public Pizza getPizza() {return pizza;}
     public Customer getCustomer() {return customer;}
     public Date getDate() {return date;}
 
-    public ArrayList<Order> orderList = new ArrayList<>();
+    public static ArrayList<Order> orderList = new ArrayList<>();
 
     public Order() {}
 

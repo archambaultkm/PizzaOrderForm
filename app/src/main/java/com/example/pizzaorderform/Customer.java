@@ -4,11 +4,14 @@ import java.io.Serializable;
 
 public class Customer implements Serializable {
 
-    private String name;
+    private int id;
     private String phoneNumber;
+    private String name;
     private String address;
     private String city;
     private String postalCode;
+
+    public int getID() {return id;}
 
     public String getName() {
         return name;
@@ -51,6 +54,16 @@ public class Customer implements Serializable {
     }
 
     public Customer() {}
+
+    public Customer(int id, String phoneNumber, String name, String address, String city, String postalCode) {
+
+        this.id = id;
+        this.phoneNumber = phoneNumber;
+        this.name = name;
+        this.address = address;
+        this.city = city;
+        this.postalCode = postalCode;
+    }
 
     @Override
     public String toString() {

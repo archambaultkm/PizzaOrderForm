@@ -155,7 +155,7 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
                         break;
                     case R.id.txtAddress1:
 
-                        underlineText(validateAddress1(enteredText), txtAddress1);
+                        underlineText(validateAddress(enteredText), txtAddress1);
                         break;
                     case R.id.txtAddress2:
 
@@ -185,21 +185,21 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
 
     private boolean validateAllEntries() {
 
-        //TODO: validate Address 2 removed for now
-
         //in case they click review order before editing any or one of the text fields, call the function that will
         //give visual feedback about invalid entries for each edittext
         underlineText(validateName(String.valueOf(txtName.getText())), txtName);
         underlineText(validatePhone(String.valueOf(txtPhone.getText())), txtPhone);
-        underlineText(validateAddress1(String.valueOf(txtAddress1.getText())), txtAddress1);
+        underlineText(validateAddress(String.valueOf(txtAddress1.getText())), txtAddress1);
         underlineText(validateCity(String.valueOf(txtCity.getText())), txtCity);
         underlineText(validatePostalCode(String.valueOf(txtPostalCode.getText())), txtPostalCode);
 
         //only return true if each check field is valid
         return (validateName(String.valueOf(txtName.getText())) && validateName(String.valueOf(txtPhone.getText())) &&
-                validateAddress1(String.valueOf(txtAddress1.getText()))  &&
+                validateAddress(String.valueOf(txtAddress1.getText()))  &&
                 validateCity(String.valueOf(txtCity.getText())) && validatePostalCode(String.valueOf(txtPostalCode.getText())));
     }
+
+    //TODO trim duplicate validation methods if you aren't going to do anything different with them.
 
     private boolean validateName(String enteredVal) {
 
@@ -213,7 +213,7 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
          return enteredVal.matches("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$");
     }
 
-    private boolean validateAddress1(String enteredVal) {
+    private boolean validateAddress(String enteredVal) {
 
         //TODO figure out what you want to do for address validation
         //since addresses aren't really a regular language I'm going to start by just checking it's not empty

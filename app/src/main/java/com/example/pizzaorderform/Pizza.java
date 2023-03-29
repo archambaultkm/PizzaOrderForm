@@ -8,10 +8,13 @@ public class Pizza implements Serializable {
 
     //I would prefer to refactor these to enums
     //values will start at 0
+    private int id;
     private int size;
     private int crust;
     private int cheese;
-    private final ArrayList<Integer> toppingsList = new ArrayList<>();
+    private ArrayList<Integer> toppingsList = new ArrayList<>();
+
+    public int getID() {return id;}
 
     public int getSize() {
         return size;
@@ -41,11 +44,6 @@ public class Pizza implements Serializable {
         return toppingsList;
     }
 
-    public int getTopping1() {return toppingsList.get(0);}
-    public int getTopping2() {return toppingsList.get(1);} //TODO add try/catch for not null check or another solution
-    public int getTopping3() {return toppingsList.get(2);}
-
-
     public void addTopping(int topping) {
         toppingsList.add(topping);
     }
@@ -55,6 +53,15 @@ public class Pizza implements Serializable {
     }
 
     public Pizza() {};
+
+    public Pizza(int id, int size, int crust, int cheese, ArrayList<Integer> toppingsList){
+
+        this.id = id;
+        this.size = size;
+        this.crust = crust;
+        this.cheese = cheese;
+        this.toppingsList = toppingsList;
+    }
 
     @Override
     public String toString() {
