@@ -25,7 +25,7 @@ public class PizzaBaseActivity extends AppCompatActivity {
 
     private ArrayList<TextView> uiComponents = new ArrayList<>();
 
-    private Customer customer;
+    private Order order;
     private Pizza pizza;
 
     @Override
@@ -41,8 +41,7 @@ public class PizzaBaseActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            pizza = (Pizza) extras.getSerializable("pizza");
-            customer = (Customer) extras.getSerializable("customer");
+            order = (Order) extras.getSerializable("order");
         }
 
         //set string values:
@@ -53,6 +52,7 @@ public class PizzaBaseActivity extends AppCompatActivity {
         addToLists();
         setListeners();
 
+        initOrder();
         initPizza();
 
         //set the string values displayed in views based on the language chosen in mainactivity
@@ -60,10 +60,16 @@ public class PizzaBaseActivity extends AppCompatActivity {
 
     }// end onCreate
 
+    private void initOrder() {
+
+        if (order == null)
+            order = new Order();
+    }
+
     private void initPizza() {
 
         //make ui reflect the current pizza
-        if (pizza == null) {
+        if (order.getPizza() == null) {
 
             pizza = new Pizza();
 
@@ -71,16 +77,19 @@ public class PizzaBaseActivity extends AppCompatActivity {
             pizza.setCrust(1);
             pizza.setCheese(1);
 
-            //update the cheese and crust buttons to reflect data already stored for the pizza
-            btnCrust2.setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
-            btnCheese2.setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
-
         } else {
 
+            pizza = order.getPizza();
+
             sizeButtons.get(pizza.getSize()).setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
-            crustButtons.get(pizza.getCrust()).setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
-            cheeseButtons.get(pizza.getCheese()).setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
+
+            //only update the size button to reflect an already constructed pizza
+            btnToppingSelection.setEnabled(true);
         }
+
+        //update the cheese and crust buttons to reflect data stored for the pizza
+        crustButtons.get(pizza.getCrust()).setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
+        cheeseButtons.get(pizza.getCheese()).setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
     }
 
     private void initWidgets() {
@@ -108,7 +117,7 @@ public class PizzaBaseActivity extends AppCompatActivity {
 
     private void addToLists() {
 
-        //it''s important that everything in this list matches its index in the strings array
+        //it's important that everything in this list matches its index in the strings array
         uiComponents.add(tvPizzaBaseTitle);
         uiComponents.add(tvSize);
         uiComponents.add(btnSize1);
@@ -158,24 +167,34 @@ public class PizzaBaseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(PizzaBaseActivity.this, PizzaToppingsActivity.class);
+                //save selections or changes for this order's pizza
+                order.setPizza(pizza);
 
-                //carry over count of correctly answered questions
-                i.putExtra("pizza", pizza);
-                i.putExtra("customer", customer);
+                Intent i = new Intent(PizzaBaseActivity.this, PizzaToppingsActivity.class);
+                //continue working on this order in the next activity
+                i.putExtra("order", order);
 
                 startActivity(i);
             }
         });
     }
 
+    //this method gets called when a button in a group is clicked so that the other buttons get de-selected
+    private void resetButtonSet(ArrayList<Button> buttons) {
+
+        for (Button btn : buttons) {
+            btn.setBackground(getResources().getDrawable(R.drawable.alternate_button, getTheme()));
+        }
+    }
+
+    //onclick event for size buttons
     public View.OnClickListener onSizeClicked = new View.OnClickListener() {
 
         @Override
         public void onClick(View view) {
 
-            //this only needs to happen the first time one is clicked but idk how to do that
-            btnToppingSelection.setEnabled(true);
+            if (!btnToppingSelection.isEnabled())
+                btnToppingSelection.setEnabled(true);
 
             //casting the view to a button allows using .getText()
             Button clickedButton = (Button) view;
@@ -201,6 +220,7 @@ public class PizzaBaseActivity extends AppCompatActivity {
         }
     };
 
+    //onclick event for crust buttons
     public View.OnClickListener onCrustClicked = new View.OnClickListener() {
 
         @Override
@@ -226,6 +246,7 @@ public class PizzaBaseActivity extends AppCompatActivity {
         }
     };
 
+    //onclick event for cheese buttons
     public View.OnClickListener onCheeseClicked = new View.OnClickListener() {
 
         @Override
@@ -252,13 +273,6 @@ public class PizzaBaseActivity extends AppCompatActivity {
             }
         }
     };
-
-    private void resetButtonSet(ArrayList<Button> buttons) {
-
-        for (Button btn : buttons) {
-            btn.setBackground(getResources().getDrawable(R.drawable.alternate_button, getTheme()));
-        }
-    }
 
     private void setLang(boolean dutch) {
 

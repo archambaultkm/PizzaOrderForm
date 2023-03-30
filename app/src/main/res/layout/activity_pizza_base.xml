@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/selection_background2"
-    android:backgroundTint="#B0FFFFFF"
-    android:backgroundTintMode="src_over"
+    android:backgroundTint="@color/white"
     android:orientation="vertical"
     android:padding="5dp"
     tools:context=".PizzaBaseActivity">
@@ -43,7 +41,8 @@
         android:gravity="bottom"
         android:text="@string/size"
         android:textColor="@color/slate_grey"
-        android:textSize="34sp">
+        android:textSize="34sp"
+        android:textStyle="bold">
 
     </TextView>
 
@@ -128,7 +127,8 @@
         android:gravity="bottom"
         android:text="@string/crust"
         android:textColor="@color/slate_grey"
-        android:textSize="34sp">
+        android:textSize="34sp"
+        android:textStyle="bold">
 
     </TextView>
 
@@ -197,7 +197,8 @@
         android:gravity="bottom"
         android:text="@string/cheese"
         android:textColor="@color/slate_grey"
-        android:textSize="34sp">
+        android:textSize="34sp"
+        android:textStyle="bold">
 
     </TextView>
 

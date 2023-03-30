@@ -6,9 +6,10 @@ import java.util.Arrays;
 
 public class Pizza implements Serializable {
 
-    //I would prefer to refactor these to enums
+    private static int counter = 0;
+
     //values will start at 0
-    private static int id;
+    private int id;
     private int size;
     private int crust;
     private int cheese;
@@ -54,8 +55,7 @@ public class Pizza implements Serializable {
     }
 
     public Pizza() {
-
-        id++;
+        this.id = counter++;
     }
 
     public Pizza(int id, int size, int crust, int cheese, ArrayList<Integer> toppingsList){

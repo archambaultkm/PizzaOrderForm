@@ -1,12 +1,12 @@
 package com.example.pizzaorderform;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-//order doesn't need to be serializable because I'm never passing a whole order using intents.
-public class Order {
+public class Order implements Serializable {
 
-    private static int count = 0;
+    private static int counter = 0;
 
     private int id;
     private Pizza pizza;
@@ -35,7 +35,7 @@ public class Order {
 
     public Order() {
 
-        this.id = ++ count;
+        this.id = counter++;
     }
 
     public Order(int id, Pizza pizza, Customer customer, Date date) {

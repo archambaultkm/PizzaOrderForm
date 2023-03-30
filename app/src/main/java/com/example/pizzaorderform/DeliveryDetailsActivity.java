@@ -25,8 +25,8 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
 
     private ArrayList<TextView> uiComponents = new ArrayList<>();
 
-    private Pizza pizza;
     private Customer customer;
+    private Order order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +37,10 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            pizza = (Pizza) extras.getSerializable("pizza");
-            customer = (Customer) extras.getSerializable("customer");
+            order = (Order) extras.getSerializable("order");
         }
+
+        customer = order.getCustomer();
 
         initWidgets();
         addToLists();
@@ -91,7 +92,6 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
         uiComponents.add(tvCity);
         uiComponents.add(tvPostalCode);
         uiComponents.add(btnReviewOrder);
-
     }
 
     private void setListeners() {
@@ -109,11 +109,10 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
                 if (validateAllEntries()) {
 
                     createCustomer();
+                    order.setCustomer(customer);
 
                     Intent i = new Intent(DeliveryDetailsActivity.this, OrderDetailsActivity.class);
-
-                    i.putExtra("pizza", pizza);
-                    i.putExtra("customer", customer);
+                    i.putExtra("order", order);
 
                     startActivity(i);
 
@@ -143,7 +142,7 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
                     case R.id.txtName:
 
                         //underline the editText when the user leaves based on the validity of what they typed
-                        underlineText(validateName(enteredText), txtName);
+                        underlineText(validateNotEmpty(enteredText), txtName);
                         break;
                     case R.id.txtPhone:
 
@@ -151,11 +150,11 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
                         break;
                     case R.id.txtAddress1:
 
-                        underlineText(validateAddress(enteredText), txtAddress1);
+                        underlineText(validateNotEmpty(enteredText), txtAddress1);
                         break;
                     case R.id.txtCity:
 
-                        underlineText(validateCity(enteredText), txtCity);
+                        underlineText(validateNotEmpty(enteredText), txtCity);
                         break;
                     case R.id.txtPostalCode:
 
@@ -181,21 +180,20 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
 
         //in case they click review order before editing any or one of the text fields, call the function that will
         //give visual feedback about invalid entries for each edittext
-        underlineText(validateName(String.valueOf(txtName.getText())), txtName);
+        underlineText(validateNotEmpty(String.valueOf(txtName.getText())), txtName);
         underlineText(validatePhone(String.valueOf(txtPhone.getText())), txtPhone);
-        underlineText(validateAddress(String.valueOf(txtAddress1.getText())), txtAddress1);
-        underlineText(validateCity(String.valueOf(txtCity.getText())), txtCity);
+        underlineText(validateNotEmpty(String.valueOf(txtAddress1.getText())), txtAddress1);
+        underlineText(validateNotEmpty(String.valueOf(txtCity.getText())), txtCity);
         underlineText(validatePostalCode(String.valueOf(txtPostalCode.getText())), txtPostalCode);
 
         //only return true if each check field is valid
-        return (validateName(String.valueOf(txtName.getText())) && validateName(String.valueOf(txtPhone.getText())) &&
-                validateAddress(String.valueOf(txtAddress1.getText()))  &&
-                validateCity(String.valueOf(txtCity.getText())) && validatePostalCode(String.valueOf(txtPostalCode.getText())));
+        return (validateNotEmpty(String.valueOf(txtName.getText())) && validatePhone(String.valueOf(txtPhone.getText())) &&
+                validateNotEmpty(String.valueOf(txtAddress1.getText()))  && validateNotEmpty(String.valueOf(txtCity.getText()))
+                && validatePostalCode(String.valueOf(txtPostalCode.getText())));
     }
 
-    //TODO trim duplicate validation methods if you aren't going to do anything different with them.
-
-    private boolean validateName(String enteredVal) {
+    //multipurpose validation for fields that just have to have something
+    private boolean validateNotEmpty(String enteredVal) {
 
         //validate the string isn't null or empty
         return (!(enteredVal == null) && !(enteredVal.trim().isEmpty()));
@@ -205,19 +203,6 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
 
         //found https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
          return enteredVal.matches("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$");
-    }
-
-    private boolean validateAddress(String enteredVal) {
-
-        //TODO figure out what you want to do for address validation
-        //since addresses aren't really a regular language I'm going to start by just checking it's not empty
-        return (!(enteredVal == null) && !(enteredVal.trim().isEmpty()));
-    }
-
-    private boolean validateCity(String enteredVal) {
-
-        //has to not be null or empty (more in-depth could check api for city names? idk)
-        return (!(enteredVal == null) && !(enteredVal.trim().isEmpty()));
     }
 
     private boolean validatePostalCode(String enteredVal) {

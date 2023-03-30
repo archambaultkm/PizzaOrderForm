@@ -28,7 +28,7 @@ public class PizzaToppingsActivity extends AppCompatActivity {
     private ArrayList<TextView> uiComponents = new ArrayList<>();
 
     private Pizza pizza;
-    private Customer customer;
+    private Order order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +39,10 @@ public class PizzaToppingsActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            pizza = (Pizza) extras.getSerializable("pizza");
-            customer = (Customer) extras.getSerializable("customer");
+            order = (Order) extras.getSerializable("order");
         }
+
+        pizza = order.getPizza();
 
         initWidgets();
         addToLists();
@@ -123,8 +124,7 @@ public class PizzaToppingsActivity extends AppCompatActivity {
 
                 Intent i = new Intent(PizzaToppingsActivity.this, PizzaBaseActivity.class);
 
-                i.putExtra("pizza", pizza);
-                i.putExtra("customer", customer);
+                i.putExtra("order", order);
 
                 startActivity(i);
             }
@@ -134,11 +134,11 @@ public class PizzaToppingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(PizzaToppingsActivity.this, DeliveryDetailsActivity.class);
+                //save changes to this order's pizza
+                order.setPizza(pizza);
 
-                //TODO figure out a controller class so this poor pizza doesn't have to get passed through 7 intents
-                i.putExtra("pizza", pizza);
-                i.putExtra("customer", customer);
+                Intent i = new Intent(PizzaToppingsActivity.this, DeliveryDetailsActivity.class);
+                i.putExtra("order", order);
 
                 startActivity(i);
             }

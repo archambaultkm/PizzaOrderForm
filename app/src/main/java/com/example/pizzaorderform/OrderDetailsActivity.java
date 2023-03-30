@@ -34,9 +34,11 @@ public class OrderDetailsActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            pizza = (Pizza) extras.getSerializable("pizza");
-            customer = (Customer) extras.getSerializable("customer");
+            order = (Order) extras.getSerializable("order");
         }
+
+        pizza = order.getPizza();
+        customer = order.getCustomer();
 
         initWidgets();
         addToLists();
@@ -52,6 +54,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
     private void showOrderData() {
 
+        tvOrderID.setText(tvOrderID.getText() + " " + String.valueOf(order.getID()));
         tvPizzaDetails.setText(pizza.toString());
         tvCustomerDetails.setText(customer.toString());
     }
@@ -81,9 +84,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent i = new Intent(OrderDetailsActivity.this, PizzaBaseActivity.class);
-
-                i.putExtra("pizza", pizza);
-                i.putExtra("customer", customer);
+                i.putExtra("order", order);
 
                 startActivity(i);
             }
@@ -95,10 +96,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
                 //get the current date for the record
                 Date date = new Date();
-
-                order = new Order();
-                order.setPizza(pizza);
-                order.setCustomer(customer);
                 order.setDate(date);
 
                 //add this order to the list for review

@@ -55,11 +55,12 @@
         android:id="@+id/tvPizzaDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2.8"
+        android:layout_gravity="center"
+        android:layout_weight="2"
         android:background="#C9545863"
         android:backgroundTintMode="add"
         android:gravity="bottom|left"
-        android:textAlignment="viewStart"
+        android:textAlignment="textStart"
         android:textColor="@color/white"
         android:textSize="24sp" />
 
@@ -67,10 +68,11 @@
         android:id="@+id/tvCustomerDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2.8"
+        android:layout_gravity="center"
+        android:layout_weight="2"
         android:background="#C9545863"
         android:gravity="top|left"
-        android:textAlignment="viewStart"
+        android:textAlignment="textStart"
         android:textColor="@color/white"
         android:textSize="24sp" />
 
