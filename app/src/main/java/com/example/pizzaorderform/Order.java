@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Order implements Serializable {
 
-    private static int counter = 0;
+    private static int counter = 1;
 
     private int id;
     private Pizza pizza;

@@ -10,12 +10,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHolder> {
 
     private Context context;
     private final ArrayList<Order> orders;
+
+    private SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd, h:mm aa", Locale.CANADA);
 
     public OrderAdapter(Context context, ArrayList<Order> orders) {
         this.context = context;
@@ -38,9 +44,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
         //assign values to the views created in item_order layout file
         //based on their position in the recyclerview
-
         holder.tvOrderNumber.setText(String.valueOf(orders.get(position).getID()));
-        holder.tvOrderDate.setText(String.valueOf(orders.get(position).getDate())); //TODO use a date formatter instead of string valueof
+        holder.tvOrderDate.setText(dateFormat.format(orders.get(position).getDate()));
     }
 
     @Override

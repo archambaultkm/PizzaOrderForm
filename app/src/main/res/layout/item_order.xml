@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="bottom"
+        android:gravity="start"
+        android:paddingStart="5dp"
         android:text="@string/orderNumber"
         android:textColor="@color/white"
         android:textSize="20sp" />
@@ -25,7 +26,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:gravity="center"
+            android:gravity="start"
+            android:paddingStart="5dp"
             android:textColor="@color/white" />
 
         <Button

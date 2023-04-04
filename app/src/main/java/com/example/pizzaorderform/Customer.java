@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 public class Customer implements Serializable {
 
-    private static int id;
+    private static int counter = 1;
+
+    private int id;
     private String phoneNumber;
     private String name;
     private String address;
@@ -55,7 +57,7 @@ public class Customer implements Serializable {
 
     public Customer() {
 
-        id++;
+        this.id=counter++;
     }
 
     public Customer(int id, String phoneNumber, String name, String address, String city, String postalCode) {

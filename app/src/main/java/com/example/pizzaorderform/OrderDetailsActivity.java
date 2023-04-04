@@ -13,7 +13,7 @@ import java.util.Date;
 
 public class OrderDetailsActivity extends AppCompatActivity {
 
-    private String[] enStrings, nlStrings;
+    private String[] enStrings, nlStrings, enSize, nlSize, enCrust, nlCrust, enCheese, nlCheese, enToppings, nlToppings;
 
     private TextView tvOrderDetailsTitle, tvOrderID, tvPizzaDetails, tvCustomerDetails;
 
@@ -47,6 +47,17 @@ public class OrderDetailsActivity extends AppCompatActivity {
         enStrings = getResources().getStringArray(R.array.en_reviewactivity);
         nlStrings = getResources().getStringArray(R.array.nl_reviewactivity);
 
+        //Special arrays for printing out user-friendly pizza info (which got stored as ints for db consistency
+        enSize = getResources().getStringArray(R.array.en_size);
+        nlSize = getResources().getStringArray(R.array.nl_size);
+        enCrust = getResources().getStringArray(R.array.en_crust);
+        nlCrust = getResources().getStringArray(R.array.nl_crust);
+        enCheese = getResources().getStringArray(R.array.en_cheese);
+        nlCheese = getResources().getStringArray(R.array.nl_cheese);
+        enToppings = getResources().getStringArray(R.array.en_toppings);
+        nlToppings = getResources().getStringArray(R.array.nl_toppings);
+
+
         setLang(MainActivity.getLanguage());
 
         showOrderData();
@@ -54,9 +65,48 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
     private void showOrderData() {
 
-        tvOrderID.setText(tvOrderID.getText() + " " + String.valueOf(order.getID()));
-        tvPizzaDetails.setText(pizza.toString());
+        tvOrderID.setText(tvOrderID.getText() + " " + order.getID());
+        tvPizzaDetails.setText(printPizzaInfo());
         tvCustomerDetails.setText(customer.toString());
+    }
+
+    private String printPizzaInfo() {
+
+        StringBuilder sb = new StringBuilder();
+        String delim = "";
+
+        if (MainActivity.getLanguage()) {
+            sb.append(getResources().getString(R.string.nlsize) + ": ");
+            sb.append(nlSize[pizza.getSize()]);
+            sb.append("\n");
+            sb.append(nlCrust[pizza.getCrust()]);
+            sb.append(" ").append(getResources().getString(R.string.nlcrust)).append(", ");
+            sb.append(nlCheese[pizza.getCheese()]);
+            sb.append(" ").append(getResources().getString(R.string.nlcheese));
+            sb.append("\n");
+            for (int topping : pizza.getToppingsList()) {
+                sb.append(delim).append(nlToppings[topping]);
+                delim = ", "; //re-assign this after the first pass so the commas are appropriate
+            }
+            sb.append("\n");
+
+        } else {
+            sb.append(getResources().getString(R.string.size)).append(": ");
+            sb.append(enSize[pizza.getSize()]);
+            sb.append("\n");
+            sb.append(enCrust[pizza.getCrust()]);
+            sb.append(" ").append(getResources().getString(R.string.crust)).append(", ");
+            sb.append(enCheese[pizza.getCheese()]);
+            sb.append(" ").append(getResources().getString(R.string.cheese));
+            sb.append("\n");
+            for (int topping : pizza.getToppingsList()) {
+                sb.append(delim).append(enToppings[topping]);
+                delim = ", "; //re-assign this after the first pass so the commas are appropriate
+            }
+            sb.append("\n");
+        }
+
+        return sb.toString();
     }
 
     private void initWidgets() {

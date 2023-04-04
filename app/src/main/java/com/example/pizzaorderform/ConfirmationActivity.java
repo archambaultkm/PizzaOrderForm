@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +26,8 @@ public class ConfirmationActivity extends AppCompatActivity {
     private ArrayList<TextView> uiComponents = new ArrayList<>();
 
     private Date dateOrdered;
+
+    private SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd, h:mm aa", Locale.CANADA);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +50,7 @@ public class ConfirmationActivity extends AppCompatActivity {
 
         setLang(MainActivity.getLanguage());
 
-        //TODO format the date
-        tvDateOrdered.setText(tvDateOrdered.getText()+" "+String.valueOf(dateOrdered));
+        tvDateOrdered.setText(tvDateOrdered.getText()+" "+dateFormat.format(dateOrdered));
     }
 
     private void initWidgets() {

@@ -202,13 +202,14 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
     private boolean validatePhone(String enteredVal) {
 
         //found https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
-         return enteredVal.matches("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$");
+         return enteredVal.matches("^(\\+\\d{1,2}\\s?)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$");
     }
 
     private boolean validatePostalCode(String enteredVal) {
 
         //check that it's a valid Canadian post code
         // regex found https://stackoverflow.com/questions/15774555/efficient-regex-for-canadian-postal-code-function
+        enteredVal = enteredVal.toUpperCase();
         return enteredVal.matches("^[ABCEGHJ-NPRSTVXY]\\d[ABCEGHJ-NPRSTV-Z][ -]?\\d[ABCEGHJ-NPRSTV-Z]\\d$");
     }
 

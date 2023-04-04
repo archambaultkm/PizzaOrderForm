@@ -7,17 +7,20 @@
 
         <string name="pizzaBaseTitle">Choose Your Base</string>
         <string name="size">Size</string>
+        <string name="nlsize">Maat</string>
         <string name="size1">SM</string>
         <string name="size2">M</string>
         <string name="size3">L</string>
         <string name="size4">XL</string>
 
         <string name="crust">Crust</string>
+        <string name="nlcrust">Korst</string>
         <string name="crust1">Thin</string>
         <string name="crust2">Regular</string>
         <string name="crust3">Stuffed</string>
 
         <string name="cheese">Cheese</string>
+        <string name="nlcheese">Kaas</string>
         <string name="cheese1">Light</string>
         <string name="cheese2">Regular</string>
         <string name="cheese3">Extra</string>
@@ -127,6 +130,47 @@
                 <item>Topping Selectie</item>
         </string-array>
 
+        <!--Pizza values split into their own arrays for printing out pizza information in the order review activity-->
+        <!--Ideally using this solution, the values would update based on the matching ones in the activity string arrays-->
+
+        <string-array name="en_size">
+                <item>SM</item>
+                <item>M</item>
+                <item>L</item>
+                <item>XL</item>
+        </string-array>
+
+        <string-array name="nl_size">
+                <item>SM</item>
+                <item>M</item>
+                <item>L</item>
+                <item>XL</item>
+        </string-array>
+
+        <string-array name="en_crust">
+                <item>Thin</item>
+                <item>Regular</item>
+                <item>Stuffed</item>
+        </string-array>
+
+        <string-array name="nl_crust">
+                <item>Dun</item>
+                <item>Normaal</item>
+                <item>Gevulde</item>
+        </string-array>
+
+        <string-array name="en_cheese">
+                <item>Light</item>
+                <item>Regular</item>
+                <item>Extra</item>
+        </string-array>
+
+        <string-array name="nl_cheese">
+                <item>Licht</item>
+                <item>Normaal</item>
+                <item>Extra</item>
+        </string-array>
+
         <string-array name="en_toppingsactivity">
                 <item>Choose Your Toppings</item>
                 <item>Select up to 3</item>
@@ -177,6 +221,45 @@
 
                 <item>Terug</item>
                 <item>Verzendgegevens</item>
+        </string-array>
+
+        <!--More special arrays for printing out information for review-->
+        <string-array name="en_toppings">
+                <item>Pepperoni</item>
+                <item>Bacon</item>
+                <item>Ham</item>
+                <item>Sausage</item>
+                <item>Mushrooms</item>
+                <item>Parmesan</item>
+                <item>Roasted Garlic</item>
+                <item>Basil</item>
+                <item>Onions</item>
+                <item>Pickles</item>
+                <item>Tomatoes</item>
+                <item>Olives</item>
+                <item>Pineapple</item>
+                <item>Banana Peppers</item>
+                <item>Anchovies</item>
+                <item>Green Peppers</item>
+        </string-array>
+
+        <string-array name="nl_toppings">
+                <item>Pepperoni</item>
+                <item>Spek</item>
+                <item>Ham</item>
+                <item>Worst</item>
+                <item>Paddestoelen</item>
+                <item>Parmezaanse</item>
+                <item>Geroosterde knoflook</item>
+                <item>Basilicum</item>
+                <item>Uien</item>
+                <item>Augerken</item>
+                <item>Tomaten</item>
+                <item>Olijven</item>
+                <item>Ananas</item>
+                <item>Bananenpeper</item>
+                <item>Ansjovis</item>
+                <item>Groene pepers</item>
         </string-array>
 
         <string-array name="en_deliveryactivity">

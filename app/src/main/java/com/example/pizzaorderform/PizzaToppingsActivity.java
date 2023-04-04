@@ -13,6 +13,8 @@ import java.util.Arrays;
 
 public class PizzaToppingsActivity extends AppCompatActivity {
 
+    private int MAX_TOPPINGS = 3;
+
     private String[] enStrings, nlStrings;
 
     private TextView tvToppingsTitle, tvToppingsInfo1, tvToppingsInfo2;
@@ -22,8 +24,6 @@ public class PizzaToppingsActivity extends AppCompatActivity {
             btnBack, btnDeliveryDetails;
 
     private ArrayList<Button> toppingButtons = new ArrayList<>();
-
-    private int MAX_TOPPINGS = 3;
 
     private ArrayList<TextView> uiComponents = new ArrayList<>();
 

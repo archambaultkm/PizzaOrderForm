@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class Pizza implements Serializable {
 
-    private static int counter = 0;
+    private static int counter = 1;
 
     //values will start at 0
     private int id;
