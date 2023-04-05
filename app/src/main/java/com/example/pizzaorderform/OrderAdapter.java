@@ -72,6 +72,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             public void onClick(View v) {
 
                 //TODO add popup to confirm they want to delete
+                SQLiteAdapter sqLiteAdapter = SQLiteAdapter.instanceOfDatabase(v.getContext());
+                sqLiteAdapter.deleteOrderFromDatabase(OrderRecordActivity.orders.get(holder.getAdapterPosition()));
                 OrderRecordActivity.orders.remove(holder.getAdapterPosition());
                 notifyItemRemoved(holder.getAdapterPosition());
             }

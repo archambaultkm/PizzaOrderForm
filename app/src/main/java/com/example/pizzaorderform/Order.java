@@ -3,6 +3,7 @@ package com.example.pizzaorderform;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class Order implements Serializable {
 
@@ -53,5 +54,23 @@ public class Order implements Serializable {
         this.customer = customer;
         this.customerID = customer.getID();
         this.date = date;
+    }
+
+    @Override
+    public boolean equals (Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+
+        final Order other = (Order) obj;
+        return id == other.id; //this is used after reviewing an order to determine if the order already exists in the db
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, pizzaID, customerID, pizza, customer, date);
     }
 }

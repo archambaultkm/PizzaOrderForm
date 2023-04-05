@@ -148,11 +148,17 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 Date date = new Date();
                 order.setDate(date);
 
-                //add this order to the list for review
-                OrderRecordActivity.orders.add(order);
-                //also add it to the database
-                SQLiteAdapter sqLiteAdapter = SQLiteAdapter.instanceOfDatabase(OrderDetailsActivity.this);
-                sqLiteAdapter.addOrderToDatabase(order);
+                if (!OrderRecordActivity.orders.contains(order)) {
+                    //add this order to the list for review
+                    OrderRecordActivity.orders.add(order);
+                    //also add it to the database
+                    SQLiteAdapter sqLiteAdapter = SQLiteAdapter.instanceOfDatabase(OrderDetailsActivity.this);
+                    sqLiteAdapter.addOrderToDatabase(order);
+
+                } else {
+                    SQLiteAdapter sqLiteAdapter = SQLiteAdapter.instanceOfDatabase(OrderDetailsActivity.this);
+                    sqLiteAdapter.updateOrderInDatabase(order);
+                }
 
                 Intent i = new Intent(OrderDetailsActivity.this, ConfirmationActivity.class);
 

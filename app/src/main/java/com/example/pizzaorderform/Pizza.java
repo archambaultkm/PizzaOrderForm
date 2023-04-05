@@ -58,10 +58,10 @@ public class Pizza implements Serializable {
         this.id = counter++;
     }
 
-    public Pizza(int size, int crust, int cheese, ArrayList<Integer> toppingsList){
+    public Pizza(int id, int size, int crust, int cheese, ArrayList<Integer> toppingsList){
 
         //this constructor gets called from the database, so the ids should be unique and autoincrementing/match what was passed in on save
-        //this.id = id;
+        this.id = id;
         this.size = size;
         this.crust = crust;
         this.cheese = cheese;
@@ -69,9 +69,8 @@ public class Pizza implements Serializable {
     }
 
     @Override
-    public String toString() {
+    public String toString() { // unused because it only displays numeric values
 
-        //TODO this is where an enum or hash will be useful to get user-readable values
         return size + "\n" + crust + "\n" + cheese + "\n" + Arrays.toString(toppingsList.toArray());
     }
 }

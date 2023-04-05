@@ -146,6 +146,10 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public void removeOrderFromDatabase(Order order) {
+
+    }
+
     public void addOrderToDatabase(Order order) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -160,11 +164,11 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         cvPizza.put(CRUST_FIELD, order.getPizza().getCrust());
         cvPizza.put(CHEESE_FIELD, order.getPizza().getCheese());
         cvPizza.put(T1_FIELD, order.getPizza().getToppingsList().get(0));
-        if (order.getPizza().getToppingsList().size() > 0)
+        if (order.getPizza().getToppingsList().size() > 1)
             cvPizza.put(T2_FIELD, order.getPizza().getToppingsList().get(1));
         else
             cvPizza.put(T2_FIELD, NULL);
-        if (order.getPizza().getToppingsList().size() > 1)
+        if (order.getPizza().getToppingsList().size() > 2)
             cvPizza.put(T3_FIELD, order.getPizza().getToppingsList().get(2));
         else
             cvPizza.put(T3_FIELD, NULL);
@@ -201,24 +205,24 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         ContentValues cvOrder = new ContentValues();
 
         //add to the pizza table
-        cvPizza.put(PIZZA_ID_FIELD, order.getPizza().getID());
+        //cvPizza.put(PIZZA_ID_FIELD, order.getPizza().getID());
         cvPizza.put(SIZE_FIELD, order.getPizza().getSize());
         cvPizza.put(CRUST_FIELD, order.getPizza().getCrust());
         cvPizza.put(CHEESE_FIELD, order.getPizza().getCheese());
         cvPizza.put(T1_FIELD, order.getPizza().getToppingsList().get(0));
-        if (order.getPizza().getToppingsList().size() > 0)
+        if (order.getPizza().getToppingsList().size() > 1)
             cvPizza.put(T2_FIELD, order.getPizza().getToppingsList().get(1));
         else
             cvPizza.put(T2_FIELD, NULL);
-        if (order.getPizza().getToppingsList().size() > 1)
+        if (order.getPizza().getToppingsList().size() > 2)
             cvPizza.put(T3_FIELD, order.getPizza().getToppingsList().get(2));
         else
             cvPizza.put(T2_FIELD, NULL);
 
-        db.update(PIZZA_TABLE_NAME, cvPizza, PIZZA_ID_FIELD + " =? ", new String[]{String.valueOf(order.getCustomer().getID())});
+        db.update(PIZZA_TABLE_NAME, cvPizza, PIZZA_ID_FIELD + " =? ", new String[]{String.valueOf(order.getPizza().getID())});
 
         //add to the customer table
-        cvCustomer.put(CUSTOMER_ID_FIELD, order.getCustomer().getID());
+        //cvCustomer.put(CUSTOMER_ID_FIELD, order.getCustomer().getID());
         cvCustomer.put(PHONE_FIELD, order.getCustomer().getPhoneNumber());
         cvCustomer.put(NAME_FIELD, order.getCustomer().getName());
         cvCustomer.put(ADDRESS_FIELD, order.getCustomer().getAddress());
@@ -228,18 +232,24 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         db.update(CUSTOMER_TABLE_NAME, cvCustomer, CUSTOMER_ID_FIELD + " =? ", new String[]{String.valueOf(order.getCustomer().getID())});
 
         //add to the order table
-        cvOrder.put(ORDER_ID_FIELD, order.getID());
+        //cvOrder.put(ORDER_ID_FIELD, order.getID());
         cvOrder.put(ORDER_PIZZA_FIELD, order.getPizza().getID());
         cvOrder.put(ORDER_CUSTOMER_FIELD, order.getCustomer().getID());
-        cvOrder.put(ORDER_DATE_FIELD, dateToString(order.getDate()));
+        //cvOrder.put(ORDER_DATE_FIELD, dateToString(order.getDate())); this apparently shouldn't change if they update it (?)
 
         db.update(ORDER_TABLE_NAME, cvOrder, ORDER_ID_FIELD + " =? ", new String[]{String.valueOf(order.getID())});
         
         db.close();
     }
 
+    public void deleteOrderFromDatabase(Order order) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(PIZZA_TABLE_NAME, PIZZA_ID_FIELD + " =? ", new String[]{String.valueOf(order.getPizza().getID())});
+        db.delete(CUSTOMER_TABLE_NAME, CUSTOMER_ID_FIELD + " =? ", new String[]{String.valueOf(order.getCustomer().getID())});
+        db.delete(ORDER_TABLE_NAME, ORDER_ID_FIELD + " =? ", new String[]{String.valueOf(order.getID())});
+    }
+
     //add values from the database into an order arraylist that can be viewed in the app on startup
-    //TODO this might work?
     public void populateOrderList() {
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -265,6 +275,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
 
                         while(pizzaResult.moveToNext()) {
 
+                            int id = pizzaResult.getInt(0);
                             int size = pizzaResult.getInt(1);
                             int crust = pizzaResult.getInt(2);
                             int cheese = pizzaResult.getInt(3);
@@ -279,7 +290,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
                             if (t3 != NULL)
                                 toppingsList.add(t3);
 
-                            pizza = new Pizza(size, crust, cheese, toppingsList);
+                            pizza = new Pizza(id, size, crust, cheese, toppingsList);
                         }
                     }
 
@@ -288,13 +299,14 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
 
                         while(customerResult.moveToNext()) {
 
+                            int id = customerResult.getInt(0);
                             String phone = customerResult.getString(1);
                             String name = customerResult.getString(2);
                             String address = customerResult.getString(3);
                             String city = customerResult.getString(4);
                             String postCode = customerResult.getString(5);
 
-                            customer = new Customer(phone, name, address, city, postCode);
+                            customer = new Customer(id, phone, name, address, city, postCode);
                         }
                     }
 

@@ -60,10 +60,10 @@ public class Customer implements Serializable {
         this.id=counter++;
     }
 
-    public Customer(String phoneNumber, String name, String address, String city, String postalCode) {
+    public Customer(int id, String phoneNumber, String name, String address, String city, String postalCode) {
 
         //this constructor gets called from the database, so the ids should be unique and autoincrementing/match what was passed in on save
-        //this.id = id;
+        this.id = id;
         this.phoneNumber = phoneNumber;
         this.name = name;
         this.address = address;

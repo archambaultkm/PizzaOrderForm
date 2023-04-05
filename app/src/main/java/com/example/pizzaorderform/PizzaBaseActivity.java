@@ -81,8 +81,7 @@ public class PizzaBaseActivity extends AppCompatActivity {
 
             pizza = order.getPizza();
 
-            sizeButtons.get(pizza.getSize()).setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
-
+            sizeButtons.get(pizza.getSize()).setEnabled(true);
             //only update the size button to reflect an already constructed pizza
             btnToppingSelection.setEnabled(true);
         }

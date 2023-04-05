@@ -50,24 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
         setLang(language);
 
+        OrderRecordActivity.orders.clear(); //empty the list any time it'll be populated from the db so there are no duplicates
         loadFromDB();
     }//end oncreate
-
-    @Override
-    protected void onResume() {
-
-        super.onResume();
-
-        //fetch stored data in sharedpreferences
-        preferences = getSharedPreferences("LANG_PREFS", MODE_PRIVATE);
-
-        //true will be dutch, default will be false (english)
-        language = preferences.getBoolean("language", false);
-        setLang(language);
-
-        //make the toggle button reflect the saved language
-        tglLanguage.setChecked(language);
-    }
 
     @Override
     protected void onPause() {
