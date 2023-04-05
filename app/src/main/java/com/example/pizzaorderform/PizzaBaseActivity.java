@@ -88,8 +88,8 @@ public class PizzaBaseActivity extends AppCompatActivity {
         }
 
         //update the cheese and crust buttons to reflect data stored for the pizza
-        crustButtons.get(pizza.getCrust()).setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
-        cheeseButtons.get(pizza.getCheese()).setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
+        crustButtons.get(pizza.getCrust()).setSelected(true);
+        cheeseButtons.get(pizza.getCheese()).setSelected(true);
     }
 
     private void initWidgets() {
@@ -183,7 +183,7 @@ public class PizzaBaseActivity extends AppCompatActivity {
     private void resetButtonSet(ArrayList<Button> buttons) {
 
         for (Button btn : buttons) {
-            btn.setBackground(getResources().getDrawable(R.drawable.alternate_button, getTheme()));
+            btn.setSelected(false);
         }
     }
 
@@ -201,7 +201,7 @@ public class PizzaBaseActivity extends AppCompatActivity {
 
             //when changing selection, make previously selected button normal again
             resetButtonSet(sizeButtons);
-            clickedButton.setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
+            clickedButton.setSelected(true);
 
             switch (clickedButton.getId()) {
                 case R.id.btnSize1:
@@ -230,7 +230,7 @@ public class PizzaBaseActivity extends AppCompatActivity {
 
             //when changing selection, make previously selected button normal again
             resetButtonSet(crustButtons);
-            clickedButton.setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
+            clickedButton.setSelected(true);
 
             switch (clickedButton.getId()) {
                 case R.id.btnCrust1:
@@ -257,7 +257,7 @@ public class PizzaBaseActivity extends AppCompatActivity {
 
             //when changing selection, make previously selected button normal again
             resetButtonSet(cheeseButtons);
-            clickedButton.setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
+            clickedButton.setSelected(true);
 
             switch (clickedButton.getId()) {
 

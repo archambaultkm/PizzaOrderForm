@@ -30,6 +30,17 @@
         </TextView>
     </androidx.appcompat.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="5"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvOrders"
         android:layout_width="match_parent"
@@ -37,6 +48,7 @@
         android:layout_weight="5"
         android:divider="@color/slate_grey"
         android:dividerHeight="1px"
+        android:visibility="gone"
         app:layoutManager="LinearLayoutManager">
 
     </androidx.recyclerview.widget.RecyclerView>

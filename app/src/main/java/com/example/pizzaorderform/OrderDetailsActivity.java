@@ -150,6 +150,9 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
                 //add this order to the list for review
                 OrderRecordActivity.orders.add(order);
+                //also add it to the database
+                SQLiteAdapter sqLiteAdapter = SQLiteAdapter.instanceOfDatabase(OrderDetailsActivity.this);
+                sqLiteAdapter.addOrderToDatabase(order);
 
                 Intent i = new Intent(OrderDetailsActivity.this, ConfirmationActivity.class);
 

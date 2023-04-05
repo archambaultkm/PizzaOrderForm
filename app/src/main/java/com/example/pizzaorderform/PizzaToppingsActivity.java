@@ -24,7 +24,6 @@ public class PizzaToppingsActivity extends AppCompatActivity {
             btnBack, btnDeliveryDetails;
 
     private ArrayList<Button> toppingButtons = new ArrayList<>();
-
     private ArrayList<TextView> uiComponents = new ArrayList<>();
 
     private Pizza pizza;
@@ -62,8 +61,7 @@ public class PizzaToppingsActivity extends AppCompatActivity {
         //make the topping buttons reflect the state of the pizza
         for (int i=0; i< MAX_TOPPINGS;i++) {
             if (i < pizza.getToppingsList().size()) {
-                toppingButtons.get(pizza.getToppingsList().get(i)).setBackground
-                        (getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
+                toppingButtons.get(pizza.getToppingsList().get(i)).setSelected(true);
             }
         }
     }
@@ -156,7 +154,7 @@ public class PizzaToppingsActivity extends AppCompatActivity {
             //important that the buttons are in the same order as the toppings they represent in the string array
             if (pizza.getToppingsList().size() < MAX_TOPPINGS) {
 
-                clickedButton.setBackground(getResources().getDrawable(R.drawable.alternate_button_highlighted, getTheme()));
+                clickedButton.setSelected(true);
                 pizza.addTopping(toppingButtons.indexOf(clickedButton));
 
             } else {
@@ -173,7 +171,7 @@ public class PizzaToppingsActivity extends AppCompatActivity {
             Button clickedButton = (Button) view;
 
             //reset the appearance of the button
-            clickedButton.setBackground(getResources().getDrawable(R.drawable.alternate_button, getTheme()));
+            clickedButton.setSelected(false);
 
             //remove all occurences of the value associated with the button long clicked from the toppings array
             pizza.deleteTopping(toppingButtons.indexOf(clickedButton));

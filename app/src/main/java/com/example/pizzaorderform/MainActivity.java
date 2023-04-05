@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         setLang(language);
 
+        loadFromDB();
     }//end oncreate
 
     @Override
@@ -80,6 +81,12 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    //this function will load saved orders into the orders array in the order record activity
+    private void loadFromDB() {
+        SQLiteAdapter sqLiteAdapter = SQLiteAdapter.instanceOfDatabase(this);
+        sqLiteAdapter.populateOrderList();
+    }
+
     private void initWidgets() {
 
         tvWelcome = findViewById(R.id.tvWelcome);
@@ -87,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
         btnGetStarted = findViewById(R.id.btnGetStarted);
 
         btnViewPastOrders = findViewById(R.id.btnViewPastOrders);
-        //TODO:add onclick for viewpastorders
 
         tglLanguage = findViewById(R.id.tglLanguage);
 

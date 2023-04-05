@@ -16,8 +16,10 @@ public class OrderRecordActivity extends AppCompatActivity {
 
     private String[] enStrings, nlStrings;
 
-    private TextView tvOrderRecordTitle;
+    private TextView tvOrderRecordTitle, tvEmpty;
     private Button btnBackToMenu;
+    private RecyclerView rvOrders;
+    private OrderAdapter adapter;
 
     private ArrayList<TextView> uiComponents = new ArrayList<>();
 
@@ -43,14 +45,17 @@ public class OrderRecordActivity extends AppCompatActivity {
     private void initWidgets() {
 
         tvOrderRecordTitle = findViewById(R.id.tvOrderRecordTitle);
+        tvEmpty = findViewById(R.id.tvEmpty);
         btnBackToMenu = findViewById(R.id.btnMenu);
 
-        RecyclerView rvOrders = findViewById(R.id.rvOrders);
-
-        OrderAdapter adapter = new OrderAdapter(this, orders);
+        rvOrders = findViewById(R.id.rvOrders);
+        adapter = new OrderAdapter(this, orders);
 
         rvOrders.setAdapter(adapter);
         rvOrders.setLayoutManager(new LinearLayoutManager(this));
+
+        rvOrders.setVisibility(orders.isEmpty() ? View.GONE : View.VISIBLE);
+        tvEmpty.setVisibility(orders.isEmpty() ? View.VISIBLE : View.GONE);
     }
 
     private void setListeners() {
@@ -67,6 +72,7 @@ public class OrderRecordActivity extends AppCompatActivity {
     private void addToLists() {
 
         uiComponents.add(tvOrderRecordTitle);
+        uiComponents.add(tvEmpty);
         uiComponents.add(btnBackToMenu);
     }
 

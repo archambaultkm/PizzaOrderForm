@@ -314,18 +314,27 @@
 
         <string-array name="en_recordactivity">
                 <item>Your Past Pizzas</item>
+                <item>No orders to show</item>
                 <item>Back to Menu</item>
-<!--                <item>Order Number</item>-->
-<!--                <item>view</item>-->
-<!--                <item>delete</item>-->
+
+        </string-array>
+
+        <string-array name="en_orderitem">
+                <item>Order Number: </item>
+                <item>view</item>
+                <item>delete</item>
         </string-array>
 
         <string-array name="nl_recordactivity">
                 <item>Je Vorige Pizza\'s</item>
+                <item>Geen bestellingen om te tonen</item>
                 <item>Terug Naar Menu</item>
-                <!--                <item>Bestelling: </item>-->
-<!--                <item>overzicht</item>-->
-<!--                <item>verwijderen</item>-->
+        </string-array>
+
+        <string-array name="nl_orderitem">
+                <item>Bestelling: </item>
+                <item>overzicht</item>
+                <item>verwijderen</item>
         </string-array>
 
 </resources>
