@@ -1,39 +1,34 @@
 package com.example.pizzaorderform;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class ConfirmationActivity extends AppCompatActivity {
-
-    private String[] enStrings, nlStrings;
+public class ConfirmationActivity extends LanguageCompatActivity {
 
     private TextView tvThankYou, tvDateOrdered;
 
     private Button btnBackToMenu, btnViewPastOrders;
 
-    private ArrayList<TextView> uiComponents = new ArrayList<>();
-
     private Date dateOrdered;
-
     private SimpleDateFormat dateFormat= new SimpleDateFormat("MM/dd/yyyy, h:mm aa", Locale.CANADA);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        language = MainActivity.getLanguage();
+
+        enStrings = getResources().getStringArray(R.array.en_confirmationactivity);
+        nlStrings = getResources().getStringArray(R.array.nl_confirmationactivity);
+
+        layoutID = R.layout.activity_confirmation;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_confirmation);
 
         Bundle extras = getIntent().getExtras();
 
@@ -41,19 +36,11 @@ public class ConfirmationActivity extends AppCompatActivity {
             dateOrdered = (Date) extras.getSerializable("order_date");
         }
 
-        initWidgets();
-        addToLists();
-        setListeners();
-
-        enStrings = getResources().getStringArray(R.array.en_confirmationactivity);
-        nlStrings = getResources().getStringArray(R.array.nl_confirmationactivity);
-
-        setLang(MainActivity.getLanguage());
-
         tvDateOrdered.setText(tvDateOrdered.getText()+" "+dateFormat.format(dateOrdered));
     }
 
-    private void initWidgets() {
+    @Override
+    protected void initWidgets() {
 
         tvThankYou = findViewById(R.id.tvThankYou);
         tvDateOrdered = findViewById(R.id.tvDateOrdered);
@@ -62,7 +49,8 @@ public class ConfirmationActivity extends AppCompatActivity {
 
     }
 
-    private void addToLists() {
+    @Override
+    protected void addToLists() {
 
         uiComponents.add(tvThankYou);
         uiComponents.add(tvDateOrdered);
@@ -70,7 +58,8 @@ public class ConfirmationActivity extends AppCompatActivity {
         uiComponents.add(btnViewPastOrders);
     }
 
-    private void setListeners() {
+    @Override
+    protected void setListeners() {
 
         btnBackToMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,20 +76,5 @@ public class ConfirmationActivity extends AppCompatActivity {
                 startActivity(new Intent(ConfirmationActivity.this, OrderRecordActivity.class));
             }
         });
-    }
-
-    private void setLang(boolean dutch) {
-
-        if (dutch) {
-
-            for (int i=0;i<uiComponents.size();i++) {
-                uiComponents.get(i).setText(nlStrings[i]);
-            }
-        } else {
-
-            for (int i=0;i<uiComponents.size();i++) {
-                uiComponents.get(i).setText(enStrings[i]);
-            }
-        }
     }
 }

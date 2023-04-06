@@ -1,7 +1,5 @@
 package com.example.pizzaorderform;
 
-import static java.security.AccessController.getContext;
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;

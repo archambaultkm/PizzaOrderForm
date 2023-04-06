@@ -1,7 +1,5 @@
 package com.example.pizzaorderform;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,60 +9,36 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends LanguageCompatActivity {
 
     private SharedPreferences preferences;
-    private static boolean language;
+    private static boolean savedLanguage;
 
     private TextView tvWelcome;
     private Button btnGetStarted, btnViewPastOrders;
     private Switch tglLanguage;
 
-    String[] enStrings;
-    String[] nlStrings;
-
-    ArrayList<TextView> uiComponents = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        this.enStrings = getResources().getStringArray(R.array.en_mainactivity);
+        this.nlStrings = getResources().getStringArray(R.array.nl_mainactivity);
+
+        layoutID = R.layout.activity_main;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        enStrings = getResources().getStringArray(R.array.en_mainactivity);
-        nlStrings = getResources().getStringArray(R.array.nl_mainactivity);
-
-        initWidgets();
-        addToLists();
-        setListeners();
 
         //fetch stored data from sharedpreferences
         preferences = getSharedPreferences("LANG_PREFS", MODE_PRIVATE);
 
         //true will be dutch, default will be false (english)
-        language = preferences.getBoolean("language", false);
+        savedLanguage = preferences.getBoolean("language", false);
+        language = savedLanguage;
         //make the toggle button reflect the saved language
         tglLanguage.setChecked(language);
 
-        setLang(language);
-
         OrderRecordActivity.orders.clear(); //empty the list any time it'll be populated from the db so there are no duplicates
-        loadFromDB();
+        loadFromDB(); //load saved orders into the order review activity
     }//end oncreate
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        preferences = getSharedPreferences("LANG_PREFS", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-
-        //write preferences to the sharedpreferences when the app is closed based on where the switch is
-        editor.putBoolean("language", tglLanguage.isChecked());
-        editor.apply();
-    }
 
     //this function will load saved orders into the orders array in the order record activity
     private void loadFromDB() {
@@ -72,19 +46,17 @@ public class MainActivity extends AppCompatActivity {
         sqLiteAdapter.populateOrderList();
     }
 
-    private void initWidgets() {
+    @Override
+    protected void initWidgets() {
 
         tvWelcome = findViewById(R.id.tvWelcome);
-
         btnGetStarted = findViewById(R.id.btnGetStarted);
-
         btnViewPastOrders = findViewById(R.id.btnViewPastOrders);
-
         tglLanguage = findViewById(R.id.tglLanguage);
-
     }
 
-    private void addToLists() {
+    @Override
+    protected void addToLists() {
 
         uiComponents.add(tvWelcome);
         uiComponents.add(btnGetStarted);
@@ -92,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
         uiComponents.add(tglLanguage);
     }
 
-    private void setListeners() {
+    @Override
+    protected void setListeners() {
 
         btnGetStarted.setOnClickListener(new View.OnClickListener() {
 
@@ -113,29 +86,22 @@ public class MainActivity extends AppCompatActivity {
 
         tglLanguage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 language = isChecked;
-                setLang(language);
+                savedLanguage = language;
+                MainActivity.super.setLanguage(language);
+
+                preferences = getSharedPreferences("LANG_PREFS", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+
+                //write preferences to the sharedpreferences when the app is closed based on where the switch is
+                editor.putBoolean("language", language);
+                editor.apply();
             }
         });
     }
 
-    //if they've checked the switch, language changes to dutch. if they've unchecked change back to english.
-    private void setLang(boolean dutch) {
-
-        if (dutch) {
-
-            for (int i=0;i<uiComponents.size();i++) {
-                uiComponents.get(i).setText(nlStrings[i]);
-            }
-        } else {
-
-            for (int i=0;i<uiComponents.size();i++) {
-                uiComponents.get(i).setText(enStrings[i]);
-            }
-        }
-    }
-
     public static boolean getLanguage() {
-        return language;
+        return savedLanguage;
     }
 }//end class

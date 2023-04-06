@@ -1,25 +1,20 @@
 package com.example.pizzaorderform;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Date;
 
-public class OrderDetailsActivity extends AppCompatActivity {
+public class OrderDetailsActivity extends LanguageCompatActivity {
 
-    private String[] enStrings, nlStrings, enSize, nlSize, enCrust, nlCrust, enCheese, nlCheese, enToppings, nlToppings;
+    private String[] enSize, nlSize, enCrust, nlCrust, enCheese, nlCheese, enToppings, nlToppings;
 
     private TextView tvOrderDetailsTitle, tvOrderID, tvPizzaDetails, tvCustomerDetails;
 
     private Button btnEdit, btnConfirm, btnFinish;
-
-    private ArrayList<TextView> uiComponents = new ArrayList<>();
 
     private Pizza pizza;
     private Customer customer;
@@ -28,8 +23,13 @@ public class OrderDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        language = MainActivity.getLanguage();
+
+        enStrings = getResources().getStringArray(R.array.en_reviewactivity);
+        nlStrings = getResources().getStringArray(R.array.nl_reviewactivity);
+
+        layoutID = R.layout.activity_order_details;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_details);
 
         Bundle extras = getIntent().getExtras();
 
@@ -39,13 +39,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
         pizza = order.getPizza();
         customer = order.getCustomer();
-
-        initWidgets();
-        addToLists();
-        setListeners();
-
-        enStrings = getResources().getStringArray(R.array.en_reviewactivity);
-        nlStrings = getResources().getStringArray(R.array.nl_reviewactivity);
 
         //Special arrays for printing out user-friendly pizza info (which got stored as ints for db consistency)
         enSize = getResources().getStringArray(R.array.en_size);
@@ -57,8 +50,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
         enToppings = getResources().getStringArray(R.array.en_toppings);
         nlToppings = getResources().getStringArray(R.array.nl_toppings);
 
-        setLang(MainActivity.getLanguage());
-
         showOrderData();
     }
 
@@ -69,7 +60,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
         tvCustomerDetails.setText(customer.toString());
     }
 
-    private void initWidgets() {
+    @Override
+    protected void initWidgets() {
 
         tvOrderDetailsTitle = findViewById(R.id.tvOrderDetailsTitle);
         tvOrderID = findViewById(R.id.tvOrderID);
@@ -85,7 +77,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
         btnFinish.setVisibility(OrderRecordActivity.orders.contains(order) ? View.VISIBLE : View.GONE);
     }
 
-    private void addToLists() {
+    @Override
+    protected void addToLists() {
 
         uiComponents.add(tvOrderDetailsTitle);
         uiComponents.add(tvOrderID);
@@ -94,7 +87,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
         uiComponents.add(btnFinish);
     }
 
-    private void setListeners() {
+    @Override
+    protected void setListeners() {
 
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,20 +175,5 @@ public class OrderDetailsActivity extends AppCompatActivity {
         }
 
         return sb.toString();
-    }
-
-    private void setLang(boolean dutch) {
-
-        if (dutch) {
-
-            for (int i=0;i<uiComponents.size();i++) {
-                uiComponents.get(i).setText(nlStrings[i]);
-            }
-        } else {
-
-            for (int i=0;i<uiComponents.size();i++) {
-                uiComponents.get(i).setText(enStrings[i]);
-            }
-        }
     }
 }

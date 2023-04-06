@@ -1,9 +1,6 @@
 package com.example.pizzaorderform;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,11 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
-public class DeliveryDetailsActivity extends AppCompatActivity {
-
-    private String[] enStrings, nlStrings;
+public class DeliveryDetailsActivity extends LanguageCompatActivity {
 
     private TextView tvDeliveryDetailsTitle, tvName, tvPhone, tvAddress1, tvCity, tvPostalCode;
 
@@ -23,16 +16,19 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
 
     private Button btnReviewOrder;
 
-    private ArrayList<TextView> uiComponents = new ArrayList<>();
-
     private Customer customer;
     private Order order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        language = MainActivity.getLanguage();
+
+        enStrings = getResources().getStringArray(R.array.en_deliveryactivity);
+        nlStrings = getResources().getStringArray(R.array.nl_deliveryactivity);
+
+        layoutID = R.layout.activity_delivery_details;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delivery_details);
 
         Bundle extras = getIntent().getExtras();
 
@@ -42,16 +38,7 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
 
         customer = order.getCustomer();
 
-        initWidgets();
-        addToLists();
-        setListeners();
-
         initDetails();
-
-        enStrings = getResources().getStringArray(R.array.en_deliveryactivity);
-        nlStrings = getResources().getStringArray(R.array.nl_deliveryactivity);
-
-        setLang(MainActivity.getLanguage());
     }
 
     private void initDetails() {
@@ -66,7 +53,8 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
         }
     }
 
-    private void initWidgets() {
+    @Override
+    protected void initWidgets() {
 
         tvDeliveryDetailsTitle = findViewById(R.id.tvOrderDetailsTitle);
         tvName = findViewById(R.id.tvName);
@@ -82,7 +70,8 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
         btnReviewOrder = findViewById(R.id.btnReviewOrder);
     }
 
-    private void addToLists() {
+    @Override
+    protected void addToLists() {
 
         //no need to add edittexts here bc we won't be manipulating the language on them
         uiComponents.add(tvDeliveryDetailsTitle);
@@ -94,7 +83,8 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
         uiComponents.add(btnReviewOrder);
     }
 
-    private void setListeners() {
+    @Override
+    protected void setListeners() {
 
         txtName.setOnFocusChangeListener(validateEntry);
         txtPhone.setOnFocusChangeListener(validateEntry);
@@ -201,14 +191,14 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
 
     private boolean validatePhone(String enteredVal) {
 
-        //found https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
+        //adapted from https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
          return enteredVal.matches("^(\\+\\d{1,2}\\s?)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$");
     }
 
     private boolean validatePostalCode(String enteredVal) {
 
         //check that it's a valid Canadian post code
-        // regex found https://stackoverflow.com/questions/15774555/efficient-regex-for-canadian-postal-code-function
+        //adapted from https://stackoverflow.com/questions/15774555/efficient-regex-for-canadian-postal-code-function
         enteredVal = enteredVal.toUpperCase();
         return enteredVal.matches("^[ABCEGHJ-NPRSTVXY]\\d[ABCEGHJ-NPRSTV-Z][ -]?\\d[ABCEGHJ-NPRSTV-Z]\\d$");
     }
@@ -224,20 +214,5 @@ public class DeliveryDetailsActivity extends AppCompatActivity {
         customer.setAddress(String.valueOf(txtAddress1.getText()));
         customer.setCity(String.valueOf(txtCity.getText()));
         customer.setPostalCode(String.valueOf(txtPostalCode.getText()));
-    }
-
-    private void setLang(boolean dutch) {
-
-        if (dutch) {
-
-            for (int i=0;i<uiComponents.size();i++) {
-                uiComponents.get(i).setText(nlStrings[i]);
-            }
-        } else {
-
-            for (int i=0;i<uiComponents.size();i++) {
-                uiComponents.get(i).setText(enStrings[i]);
-            }
-        }
     }
 }

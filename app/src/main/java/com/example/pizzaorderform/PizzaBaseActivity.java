@@ -1,7 +1,5 @@
 package com.example.pizzaorderform;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,11 +8,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-//TODO:disable the toppings button until they've picked a size
-
-public class PizzaBaseActivity extends AppCompatActivity {
-
-    String[] enStrings, nlStrings;
+public class PizzaBaseActivity extends LanguageCompatActivity {
 
     private TextView tvPizzaBaseTitle, tvSize, tvCrust, tvCheese;
 
@@ -23,20 +17,19 @@ public class PizzaBaseActivity extends AppCompatActivity {
 
     private ArrayList<Button> sizeButtons, crustButtons, cheeseButtons;
 
-    private ArrayList<TextView> uiComponents = new ArrayList<>();
-
     private Order order;
     private Pizza pizza;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pizza_base);
+        language = MainActivity.getLanguage();
+        //set string values:
+        enStrings = getResources().getStringArray(R.array.en_baseactivity);
+        nlStrings = getResources().getStringArray(R.array.nl_baseactivity);
 
-        sizeButtons = new ArrayList<>();
-        crustButtons  = new ArrayList<>();
-        cheeseButtons  = new ArrayList<>();
+        layoutID = R.layout.activity_pizza_base;
+        super.onCreate(savedInstanceState);
 
         Bundle extras = getIntent().getExtras();
 
@@ -44,20 +37,8 @@ public class PizzaBaseActivity extends AppCompatActivity {
             order = (Order) extras.getSerializable("order");
         }
 
-        //set string values:
-        enStrings = getResources().getStringArray(R.array.en_baseactivity);
-        nlStrings = getResources().getStringArray(R.array.nl_baseactivity);
-
-        initWidgets();
-        addToLists();
-        setListeners();
-
         initOrder();
         initPizza();
-
-        //set the string values displayed in views based on the language chosen in mainactivity
-        setLang(MainActivity.getLanguage());
-
     }// end onCreate
 
     private void initOrder() {
@@ -90,7 +71,8 @@ public class PizzaBaseActivity extends AppCompatActivity {
         cheeseButtons.get(pizza.getCheese()).setSelected(true);
     }
 
-    private void initWidgets() {
+    @Override
+    protected void initWidgets() {
 
         tvPizzaBaseTitle = findViewById(R.id.tvPizzaBaseTitle);
         tvSize = findViewById(R.id.tvSize);
@@ -113,7 +95,8 @@ public class PizzaBaseActivity extends AppCompatActivity {
         btnToppingSelection=findViewById(R.id.btnToppingSelection);
     }
 
-    private void addToLists() {
+    @Override
+    protected void addToLists() {
 
         //it's important that everything in this list matches its index in the strings array
         uiComponents.add(tvPizzaBaseTitle);
@@ -132,6 +115,10 @@ public class PizzaBaseActivity extends AppCompatActivity {
         uiComponents.add(btnCheese3);
         uiComponents.add(btnToppingSelection);
 
+        sizeButtons = new ArrayList<>();
+        crustButtons  = new ArrayList<>();
+        cheeseButtons  = new ArrayList<>();
+
         //make groups of related buttons
         sizeButtons.add(btnSize1);
         sizeButtons.add(btnSize2);
@@ -147,8 +134,9 @@ public class PizzaBaseActivity extends AppCompatActivity {
         cheeseButtons.add(btnCheese3);
     }
 
-    private void setListeners() {
-        //set onClick listeners
+    @Override
+    protected void setListeners() {
+        //the size, crust and cheese buttons will each get a dedicated listener
         for (Button btn : sizeButtons) {
             btn.setOnClickListener(onSizeClicked);
         }
@@ -271,19 +259,4 @@ public class PizzaBaseActivity extends AppCompatActivity {
             }
         }
     };
-
-    private void setLang(boolean dutch) {
-
-        if (dutch) {
-
-            for (int i=0;i<uiComponents.size();i++) {
-                uiComponents.get(i).setText(nlStrings[i]);
-            }
-        } else {
-
-            for (int i=0;i<uiComponents.size();i++) {
-                uiComponents.get(i).setText(enStrings[i]);
-            }
-        }
-    }
 }

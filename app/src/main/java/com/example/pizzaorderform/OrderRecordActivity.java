@@ -1,6 +1,5 @@
 package com.example.pizzaorderform;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,16 +11,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class OrderRecordActivity extends AppCompatActivity {
-
-    private String[] enStrings, nlStrings;
+public class OrderRecordActivity extends LanguageCompatActivity {
 
     private TextView tvOrderRecordTitle, tvEmpty;
     private Button btnBackToMenu;
     private RecyclerView rvOrders;
     private OrderAdapter adapter;
-
-    private ArrayList<TextView> uiComponents = new ArrayList<>();
 
     //this needs to never be null
     public static ArrayList<Order> orders = new ArrayList<>();
@@ -29,20 +24,17 @@ public class OrderRecordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_record);
-
-        initWidgets();
-        addToLists();
-        setListeners();
+        language = MainActivity.getLanguage();
 
         enStrings = getResources().getStringArray(R.array.en_recordactivity);
         nlStrings = getResources().getStringArray(R.array.nl_recordactivity);
 
-        setLang(MainActivity.getLanguage());
+        layoutID = R.layout.activity_order_record;
+        super.onCreate(savedInstanceState);
     }
 
-    private void initWidgets() {
+    @Override
+    protected void initWidgets() {
 
         tvOrderRecordTitle = findViewById(R.id.tvOrderRecordTitle);
         tvEmpty = findViewById(R.id.tvEmpty);
@@ -57,7 +49,16 @@ public class OrderRecordActivity extends AppCompatActivity {
         setVisibility();
     }
 
-    private void setListeners() {
+    @Override
+    protected void addToLists() {
+
+        uiComponents.add(tvOrderRecordTitle);
+        uiComponents.add(tvEmpty);
+        uiComponents.add(btnBackToMenu);
+    }
+
+    @Override
+    protected void setListeners() {
 
         btnBackToMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,31 +69,10 @@ public class OrderRecordActivity extends AppCompatActivity {
         });
     }
 
-    private void addToLists() {
-
-        uiComponents.add(tvOrderRecordTitle);
-        uiComponents.add(tvEmpty);
-        uiComponents.add(btnBackToMenu);
-    }
-
     //public because this will also get called from the order adapter
+    //TODO don't have this working yet to set the textview to visible when you delete the last item in recyclerview
     public void setVisibility() {
         rvOrders.setVisibility(orders.isEmpty() ? View.GONE : View.VISIBLE);
         tvEmpty.setVisibility(orders.isEmpty() ? View.VISIBLE : View.GONE);
-    }
-
-    private void setLang(boolean dutch) {
-
-        if (dutch) {
-
-            for (int i=0;i<uiComponents.size();i++) {
-                uiComponents.get(i).setText(nlStrings[i]);
-            }
-        } else {
-
-            for (int i=0;i<uiComponents.size();i++) {
-                uiComponents.get(i).setText(enStrings[i]);
-            }
-        }
     }
 }

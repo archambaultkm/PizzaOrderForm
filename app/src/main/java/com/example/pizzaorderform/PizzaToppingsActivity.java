@@ -1,7 +1,5 @@
 package com.example.pizzaorderform;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,14 +8,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class PizzaToppingsActivity extends AppCompatActivity {
+public class PizzaToppingsActivity extends LanguageCompatActivity {
 
     private int MIN_TOPPINGS = 1;
     private int MAX_TOPPINGS = 3;
-
-    private String[] enStrings, nlStrings;
 
     private TextView tvToppingsTitle, tvToppingsInfo1, tvToppingsInfo2;
 
@@ -26,7 +21,6 @@ public class PizzaToppingsActivity extends AppCompatActivity {
             btnTopping17, btnTopping18, btnBack, btnDeliveryDetails;
 
     private ArrayList<Button> toppingButtons = new ArrayList<>();
-    private ArrayList<TextView> uiComponents = new ArrayList<>();
 
     private Pizza pizza;
     private Order order;
@@ -34,8 +28,14 @@ public class PizzaToppingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        language = MainActivity.getLanguage();
+
+        //set string values:
+        enStrings = getResources().getStringArray(R.array.en_toppingsactivity);
+        nlStrings = getResources().getStringArray(R.array.nl_toppingsactivity);
+
+        layoutID = R.layout.activity_pizza_toppings;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pizza_toppings);
 
         Bundle extras = getIntent().getExtras();
 
@@ -45,17 +45,7 @@ public class PizzaToppingsActivity extends AppCompatActivity {
 
         pizza = order.getPizza();
 
-        initWidgets();
-        addToLists();
-        setListeners();
-
         initToppings();
-
-        //set string values:
-        enStrings = getResources().getStringArray(R.array.en_toppingsactivity);
-        nlStrings = getResources().getStringArray(R.array.nl_toppingsactivity);
-
-        setLang(MainActivity.getLanguage());
     }
 
     private void initToppings() {
@@ -68,7 +58,8 @@ public class PizzaToppingsActivity extends AppCompatActivity {
         }
     }
 
-    private void initWidgets() {
+    @Override
+    protected void initWidgets() {
 
         tvToppingsTitle = findViewById(R.id.tvToppingsTitle);
         tvToppingsInfo1 = findViewById(R.id.tvToppingsInfo1);
@@ -98,12 +89,14 @@ public class PizzaToppingsActivity extends AppCompatActivity {
         toppingButtons.add(btnTopping18 = findViewById(R.id.btnTopping18));
     }
 
-    private void addToLists() {
+    @Override
+    protected void addToLists() {
 
         uiComponents.add(tvToppingsTitle);
         uiComponents.add(tvToppingsInfo1);
         uiComponents.add(tvToppingsInfo2);
 
+        //the topping buttons are already in a list which makes this method a bit shorter
         for (Button component : toppingButtons) {
             uiComponents.add(component);
         }
@@ -112,7 +105,8 @@ public class PizzaToppingsActivity extends AppCompatActivity {
         uiComponents.add(btnDeliveryDetails);
     }
 
-    private void setListeners() {
+    @Override
+    protected void setListeners() {
 
         //set Onclicks for toppings
         for (Button button : toppingButtons) {
@@ -197,19 +191,4 @@ public class PizzaToppingsActivity extends AppCompatActivity {
         }
 
     }; //end onToppingLongClicked
-
-    private void setLang(boolean dutch) {
-
-        if (dutch) {
-
-            for (int i=0;i<uiComponents.size();i++) {
-                uiComponents.get(i).setText(nlStrings[i]);
-            }
-        } else {
-
-            for (int i=0;i<uiComponents.size();i++) {
-                uiComponents.get(i).setText(enStrings[i]);
-            }
-        }
-    }
 }
