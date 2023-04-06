@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/pizzaBaseTitle"
+            android:textAllCaps="true"
             android:textColor="@color/slate_grey"
             android:textSize="35sp"
             android:textStyle="bold">
@@ -64,7 +65,7 @@
             android:paddingBottom="20dp"
             android:text="@string/size1"
             android:textColor="@color/slate_grey"
-            android:textSize="16sp"
+            android:textSize="26sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -80,7 +81,7 @@
             android:paddingBottom="20dp"
             android:text="@string/size2"
             android:textColor="@color/slate_grey"
-            android:textSize="16sp"
+            android:textSize="26sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -96,7 +97,7 @@
             android:paddingBottom="20dp"
             android:text="@string/size3"
             android:textColor="@color/slate_grey"
-            android:textSize="16sp"
+            android:textSize="26sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -112,7 +113,7 @@
             android:paddingBottom="20dp"
             android:text="@string/size4"
             android:textColor="@color/slate_grey"
-            android:textSize="16sp"
+            android:textSize="26sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -148,9 +149,10 @@
             android:background="@drawable/square_button"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            android:singleLine="true"
             android:text="@string/crust1"
             android:textColor="@color/slate_grey"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -164,9 +166,10 @@
             android:background="@drawable/square_button"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            android:singleLine="true"
             android:text="@string/crust2"
             android:textColor="@color/slate_grey"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -180,9 +183,10 @@
             android:background="@drawable/square_button"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            android:singleLine="true"
             android:text="@string/crust3"
             android:textColor="@color/slate_grey"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -218,9 +222,10 @@
             android:background="@drawable/square_button"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            android:singleLine="true"
             android:text="@string/cheese1"
             android:textColor="@color/slate_grey"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -234,9 +239,10 @@
             android:background="@drawable/square_button"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            android:singleLine="true"
             android:text="@string/cheese2"
             android:textColor="@color/slate_grey"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:backgroundTint="@null">
 
         </Button>
@@ -250,9 +256,10 @@
             android:background="@drawable/square_button"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            android:singleLine="true"
             android:text="@string/cheese3"
             android:textColor="@color/slate_grey"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:backgroundTint="@null">
 
         </Button>

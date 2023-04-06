@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/toppingsTitle"
+            android:textAllCaps="true"
             android:textColor="@color/slate_grey"
             android:textSize="35sp"
             android:textStyle="bold">

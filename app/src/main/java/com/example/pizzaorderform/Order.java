@@ -7,10 +7,6 @@ import java.util.Objects;
 
 public class Order implements Serializable {
 
-    //this counter initialization in the pizza, customer, and order
-    // classes ensures there's no duplicate id's to those in database
-    private int counter;
-
     private int id;
     private int pizzaID;
     private int customerID;
@@ -44,8 +40,10 @@ public class Order implements Serializable {
 
     public Order() {
 
-        counter = OrderRecordActivity.orders.size()+ 1;
-        this.id = counter++;
+        //this counter initialization in the pizza, customer, and order
+        // classes ensures there's no duplicate id's to those in database
+        int lastOrder = OrderRecordActivity.orders.get(OrderRecordActivity.orders.size() - 1).getID();
+        this.id = lastOrder + 1;
     }
 
     public Order(int id, Pizza pizza, Customer customer, Date date) {

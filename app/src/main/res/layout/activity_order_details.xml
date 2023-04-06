@@ -22,8 +22,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/orderDetailsTitle"
-            android:textColor="@color/white"
+            android:textAllCaps="true"
 
+            android:textColor="@color/white"
             android:textSize="35sp"
             android:textStyle="bold">
 
@@ -56,10 +57,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="#C9545863"
+        android:background="#90545863"
         android:backgroundTintMode="add"
-        android:gravity="center"
+        android:gravity="bottom|left"
         android:paddingLeft="15dp"
+        android:paddingBottom="5dp"
         android:textAlignment="textStart"
         android:textColor="@color/white"
         android:textSize="24sp" />
@@ -69,9 +71,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="#C9545863"
-        android:gravity="center"
+        android:background="#90545863"
+        android:gravity="top|left"
         android:paddingLeft="15dp"
+        android:paddingTop="15dp"
         android:textAlignment="textStart"
         android:textColor="@color/white"
         android:textSize="24sp" />

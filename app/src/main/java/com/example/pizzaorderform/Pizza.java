@@ -6,10 +6,6 @@ import java.util.Arrays;
 
 public class Pizza implements Serializable {
 
-    //this counter initialization in the pizza, customer, and order
-    // classes ensures there's no duplicate id's to those in database
-    private int counter;
-
     //values will start at 0
     private int id;
     private int size;
@@ -57,8 +53,8 @@ public class Pizza implements Serializable {
     }
 
     public Pizza() {
-        counter = OrderRecordActivity.orders.size()+ 1;
-        this.id = counter++;
+        int lastOrder = OrderRecordActivity.orders.get(OrderRecordActivity.orders.size() - 1).getID();
+        this.id = lastOrder + 1;
     }
 
     public Pizza(int id, int size, int crust, int cheese, ArrayList<Integer> toppingsList){
