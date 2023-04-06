@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            android:backgroundTint="@color/powder_blue"
             android:gravity="center"
             android:text="@string/view"
             app:cornerRadius="50dp" />
@@ -48,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            android:backgroundTint="?attr/colorError"
             android:gravity="center"
             android:padding="5dp"
             android:text="@string/delete"

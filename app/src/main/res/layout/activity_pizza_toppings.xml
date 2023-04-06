@@ -24,7 +24,7 @@
             android:text="@string/toppingsTitle"
             android:textAllCaps="true"
             android:textColor="@color/slate_grey"
-            android:textSize="35sp"
+            android:textSize="30sp"
             android:textStyle="bold">
 
         </TextView>
