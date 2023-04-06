@@ -54,8 +54,7 @@ public class OrderRecordActivity extends AppCompatActivity {
         rvOrders.setAdapter(adapter);
         rvOrders.setLayoutManager(new LinearLayoutManager(this));
 
-        rvOrders.setVisibility(orders.isEmpty() ? View.GONE : View.VISIBLE);
-        tvEmpty.setVisibility(orders.isEmpty() ? View.VISIBLE : View.GONE);
+        setVisibility();
     }
 
     private void setListeners() {
@@ -74,6 +73,12 @@ public class OrderRecordActivity extends AppCompatActivity {
         uiComponents.add(tvOrderRecordTitle);
         uiComponents.add(tvEmpty);
         uiComponents.add(btnBackToMenu);
+    }
+
+    //public because this will also get called from the order adapter
+    public void setVisibility() {
+        rvOrders.setVisibility(orders.isEmpty() ? View.GONE : View.VISIBLE);
+        tvEmpty.setVisibility(orders.isEmpty() ? View.VISIBLE : View.GONE);
     }
 
     private void setLang(boolean dutch) {

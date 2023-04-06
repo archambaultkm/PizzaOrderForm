@@ -60,7 +60,6 @@
         android:backgroundTintMode="add"
         android:gravity="center"
         android:paddingLeft="15dp"
-        android:text="Just for testing"
         android:textAlignment="textStart"
         android:textColor="@color/white"
         android:textSize="24sp" />
@@ -89,6 +88,16 @@
         android:gravity="center"
         android:text="@string/confirm"
         android:textSize="24sp"
+        app:cornerRadius="50dp" />
+
+    <Button
+        android:id="@+id/btnFinish"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:visibility="gone"
         app:cornerRadius="50dp" />
 
 </LinearLayout>

@@ -7,7 +7,9 @@ import java.util.Objects;
 
 public class Order implements Serializable {
 
-    private static int counter = 1;
+    //this counter initialization in the pizza, customer, and order
+    // classes ensures there's no duplicate id's to those in database
+    private int counter;
 
     private int id;
     private int pizzaID;
@@ -42,6 +44,7 @@ public class Order implements Serializable {
 
     public Order() {
 
+        counter = OrderRecordActivity.orders.size()+ 1;
         this.id = counter++;
     }
 

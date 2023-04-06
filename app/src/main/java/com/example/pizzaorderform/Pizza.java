@@ -6,7 +6,9 @@ import java.util.Arrays;
 
 public class Pizza implements Serializable {
 
-    private static int counter = 1;
+    //this counter initialization in the pizza, customer, and order
+    // classes ensures there's no duplicate id's to those in database
+    private int counter;
 
     //values will start at 0
     private int id;
@@ -55,6 +57,7 @@ public class Pizza implements Serializable {
     }
 
     public Pizza() {
+        counter = OrderRecordActivity.orders.size()+ 1;
         this.id = counter++;
     }
 

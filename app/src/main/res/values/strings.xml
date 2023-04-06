@@ -48,6 +48,10 @@
         <string name="topping16">Green Peppers</string>
         <string name="back">Back</string>
         <string name="deliveryDetails">Delivery Details</string>
+        <string name="enToppingsPrompt">Please select at least one topping</string>
+        <string name="nlToppingsPrompt">Selecteer ten minste één topping</string>
+        <string name="enToppingsError">Max toppings reached!</string>
+        <string name="nlToppingsError">Max toppings bereikt!</string>
 
         <string name="nameLabel">Name:</string>
         <string name="phoneLabel">Phone Number:</string>
@@ -192,6 +196,8 @@
                 <item>Banana Peppers</item>
                 <item>Anchovies</item>
                 <item>Green Peppers</item>
+                <item>Feta</item>
+                <item>Chili Oil</item>
 
                 <item>Back</item>
                 <item>Delivery Details</item>
@@ -218,6 +224,8 @@
                 <item>Bananenpeper</item>
                 <item>Ansjovis</item>
                 <item>Groene pepers</item>
+                <item>Feta</item>
+                <item>Chili Olie</item>
 
                 <item>Terug</item>
                 <item>Verzendgegevens</item>
@@ -241,6 +249,8 @@
                 <item>Banana Peppers</item>
                 <item>Anchovies</item>
                 <item>Green Peppers</item>
+                <item>Feta</item>
+                <item>Chili Oil</item>
         </string-array>
 
         <string-array name="nl_toppings">
@@ -260,6 +270,8 @@
                 <item>Bananenpeper</item>
                 <item>Ansjovis</item>
                 <item>Groene pepers</item>
+                <item>Feta</item>
+                <item>Chili Olie</item>
         </string-array>
 
         <string-array name="en_deliveryactivity">
@@ -279,7 +291,7 @@
                 <item>Naam:</item>
                 <item>Telefoonnummer</item>
                 <item>Adres 1:</item>
-                <item>stad:</item>
+                <item>Stad:</item>
                 <item>Postcode:</item>
                 <item>Bestelling bekijken</item>
         </string-array>
@@ -289,6 +301,7 @@
                 <item>Order ID:</item>
                 <item>edit</item>
                 <item>Confirm and Place Order</item>
+                <item>Finish</item>
         </string-array>
 
         <string-array name="nl_reviewactivity">
@@ -296,6 +309,7 @@
                 <item>Bestelling:</item>
                 <item>redigeren</item>
                 <item>Bevestigen en Bestellen</item>
+                <item>Einde</item>
         </string-array>
 
         <string-array name="en_confirmationactivity">

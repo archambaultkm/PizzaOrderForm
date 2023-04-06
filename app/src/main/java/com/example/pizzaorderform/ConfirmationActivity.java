@@ -27,7 +27,7 @@ public class ConfirmationActivity extends AppCompatActivity {
 
     private Date dateOrdered;
 
-    private SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd, h:mm aa", Locale.CANADA);
+    private SimpleDateFormat dateFormat= new SimpleDateFormat("MM/dd/yyyy, h:mm aa", Locale.CANADA);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

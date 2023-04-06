@@ -146,10 +146,6 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void removeOrderFromDatabase(Order order) {
-
-    }
-
     public void addOrderToDatabase(Order order) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -159,7 +155,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         ContentValues cvOrder = new ContentValues();
 
         //add to the pizza table
-        //cvPizza.put(PIZZA_ID_FIELD, order.getPizza().getID());
+        cvPizza.put(PIZZA_ID_FIELD, order.getPizza().getID());
         cvPizza.put(SIZE_FIELD, order.getPizza().getSize());
         cvPizza.put(CRUST_FIELD, order.getPizza().getCrust());
         cvPizza.put(CHEESE_FIELD, order.getPizza().getCheese());
@@ -176,7 +172,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         db.insert(PIZZA_TABLE_NAME, null, cvPizza);
 
         //add to the customer table
-        //cvCustomer.put(CUSTOMER_ID_FIELD, order.getCustomer().getID());
+        cvCustomer.put(CUSTOMER_ID_FIELD, order.getCustomer().getID());
         cvCustomer.put(PHONE_FIELD, order.getCustomer().getPhoneNumber());
         cvCustomer.put(NAME_FIELD, order.getCustomer().getName());
         cvCustomer.put(ADDRESS_FIELD, order.getCustomer().getAddress());
@@ -186,7 +182,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         db.insert(CUSTOMER_TABLE_NAME, null, cvCustomer);
 
         //add to the order table
-        //cvOrder.put(ORDER_ID_FIELD, order.getID());
+        cvOrder.put(ORDER_ID_FIELD, order.getID());
         cvOrder.put(ORDER_PIZZA_FIELD, order.getPizza().getID());
         cvOrder.put(ORDER_CUSTOMER_FIELD, order.getCustomer().getID());
         cvOrder.put(ORDER_DATE_FIELD, dateToString(order.getDate()));
@@ -205,7 +201,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         ContentValues cvOrder = new ContentValues();
 
         //add to the pizza table
-        //cvPizza.put(PIZZA_ID_FIELD, order.getPizza().getID());
+        cvPizza.put(PIZZA_ID_FIELD, order.getPizza().getID());
         cvPizza.put(SIZE_FIELD, order.getPizza().getSize());
         cvPizza.put(CRUST_FIELD, order.getPizza().getCrust());
         cvPizza.put(CHEESE_FIELD, order.getPizza().getCheese());
@@ -222,7 +218,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         db.update(PIZZA_TABLE_NAME, cvPizza, PIZZA_ID_FIELD + " =? ", new String[]{String.valueOf(order.getPizza().getID())});
 
         //add to the customer table
-        //cvCustomer.put(CUSTOMER_ID_FIELD, order.getCustomer().getID());
+        cvCustomer.put(CUSTOMER_ID_FIELD, order.getCustomer().getID());
         cvCustomer.put(PHONE_FIELD, order.getCustomer().getPhoneNumber());
         cvCustomer.put(NAME_FIELD, order.getCustomer().getName());
         cvCustomer.put(ADDRESS_FIELD, order.getCustomer().getAddress());
@@ -232,7 +228,7 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
         db.update(CUSTOMER_TABLE_NAME, cvCustomer, CUSTOMER_ID_FIELD + " =? ", new String[]{String.valueOf(order.getCustomer().getID())});
 
         //add to the order table
-        //cvOrder.put(ORDER_ID_FIELD, order.getID());
+        cvOrder.put(ORDER_ID_FIELD, order.getID());
         cvOrder.put(ORDER_PIZZA_FIELD, order.getPizza().getID());
         cvOrder.put(ORDER_CUSTOMER_FIELD, order.getCustomer().getID());
         //cvOrder.put(ORDER_DATE_FIELD, dateToString(order.getDate())); this apparently shouldn't change if they update it (?)

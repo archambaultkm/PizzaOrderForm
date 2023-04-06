@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PizzaToppingsActivity extends AppCompatActivity {
 
+    private int MIN_TOPPINGS = 1;
     private int MAX_TOPPINGS = 3;
 
     private String[] enStrings, nlStrings;
@@ -21,7 +23,7 @@ public class PizzaToppingsActivity extends AppCompatActivity {
 
     private Button btnTopping1, btnTopping2, btnTopping3, btnTopping4, btnTopping5, btnTopping6, btnTopping7, btnTopping8,
             btnTopping9, btnTopping10, btnTopping11, btnTopping12, btnTopping13, btnTopping14, btnTopping15, btnTopping16,
-            btnBack, btnDeliveryDetails;
+            btnTopping17, btnTopping18, btnBack, btnDeliveryDetails;
 
     private ArrayList<Button> toppingButtons = new ArrayList<>();
     private ArrayList<TextView> uiComponents = new ArrayList<>();
@@ -92,6 +94,8 @@ public class PizzaToppingsActivity extends AppCompatActivity {
         toppingButtons.add(btnTopping14 = findViewById(R.id.btnTopping14));
         toppingButtons.add(btnTopping15 = findViewById(R.id.btnTopping15));
         toppingButtons.add(btnTopping16 = findViewById(R.id.btnTopping16));
+        toppingButtons.add(btnTopping17 = findViewById(R.id.btnTopping17));
+        toppingButtons.add(btnTopping18 = findViewById(R.id.btnTopping18));
     }
 
     private void addToLists() {
@@ -132,13 +136,21 @@ public class PizzaToppingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //save changes to this order's pizza
-                order.setPizza(pizza);
+                if (pizza.getToppingsList().size() < MIN_TOPPINGS) {
+                    if (MainActivity.getLanguage()) {
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.nlToppingsPrompt), Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.enToppingsPrompt), Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    //save changes to this order's pizza
+                    order.setPizza(pizza);
 
-                Intent i = new Intent(PizzaToppingsActivity.this, DeliveryDetailsActivity.class);
-                i.putExtra("order", order);
+                    Intent i = new Intent(PizzaToppingsActivity.this, DeliveryDetailsActivity.class);
+                    i.putExtra("order", order);
 
-                startActivity(i);
+                    startActivity(i);
+                }
             }
         });
     }
@@ -158,7 +170,12 @@ public class PizzaToppingsActivity extends AppCompatActivity {
                 pizza.addTopping(toppingButtons.indexOf(clickedButton));
 
             } else {
-                //TODO: add a language-sensitive toast that says max toppings reached
+
+                if (MainActivity.getLanguage()) {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.nlToppingsError), Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.enToppingsError), Toast.LENGTH_LONG).show();
+                }
             }
         }
     }; //end onToppingClicked

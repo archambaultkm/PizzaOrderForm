@@ -25,7 +25,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
     String[] enStrings, nlStrings;
 
-    private SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd, h:mm aa", Locale.CANADA);
+    private SimpleDateFormat dateFormat= new SimpleDateFormat("MM/dd/yyyy, h:mm aa", Locale.CANADA);
 
     public OrderAdapter(Context context, ArrayList<Order> orders) {
         this.context = context;
@@ -62,10 +62,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             holder.btnDelete.setText(enStrings[2]);
         }
 
-        holder.tvOrderNumber.setText(holder.tvOrderNumber.getText() +
+        holder.tvOrderNumber.setText(holder.tvOrderNumber.getText() + " " +
                 String.valueOf(orders.get(position).getID()));
         holder.tvOrderDate.setText(dateFormat.format(orders.get(position).getDate()));
-
 
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +77,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
                 notifyItemRemoved(holder.getAdapterPosition());
             }
         });
+
         holder.btnView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

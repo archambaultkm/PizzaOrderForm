@@ -8,6 +8,7 @@
     android:backgroundTint="#52545863"
     android:backgroundTintMode="src_over"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".OrderRecordActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -29,6 +30,10 @@
 
         </TextView>
     </androidx.appcompat.widget.Toolbar>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
 
     <TextView
         android:id="@+id/tvEmpty"
