@@ -199,8 +199,7 @@ public class DeliveryDetailsActivity extends LanguageCompatActivity {
 
         //check that it's a valid Canadian post code
         //adapted from https://stackoverflow.com/questions/15774555/efficient-regex-for-canadian-postal-code-function
-        enteredVal = enteredVal.toUpperCase();
-        return enteredVal.matches("^[ABCEGHJ-NPRSTVXY]\\d[ABCEGHJ-NPRSTV-Z][ -]?\\d[ABCEGHJ-NPRSTV-Z]\\d$");
+        return enteredVal.toUpperCase().matches("^[ABCEGHJ-NPRSTVXY]\\d[ABCEGHJ-NPRSTV-Z][ -]?\\d[ABCEGHJ-NPRSTV-Z]\\d$");
     }
 
     private void createCustomer() {

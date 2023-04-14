@@ -5,8 +5,10 @@ import static java.sql.Types.NULL;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -82,7 +84,11 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
                 .append(T3_FIELD)
                 .append(" INT);");
 
-        db.execSQL(pizzaSQL.toString());
+        try {
+            db.execSQL(pizzaSQL.toString());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         StringBuilder customerSQL;
         customerSQL = new StringBuilder()
@@ -102,7 +108,11 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
                 .append(POSTCODE_FIELD)
                 .append(" TEXT);");
 
-        db.execSQL(customerSQL.toString());
+        try {
+            db.execSQL(customerSQL.toString());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         StringBuilder orderSQL;
         orderSQL = new StringBuilder()
@@ -134,7 +144,11 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
                 .append(PHONE_FIELD)
                 .append(") );");
 
-        db.execSQL(orderSQL.toString());
+        try {
+            db.execSQL(orderSQL.toString());
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -288,6 +302,9 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
 
                             pizza = new Pizza(id, size, crust, cheese, toppingsList);
                         }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        Log.d("LOG", "populateOrderList: error querying pizza table");
                     }
 
                     //set up the customer connected to the order
@@ -304,6 +321,9 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
 
                             customer = new Customer(id, phone, name, address, city, postCode);
                         }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        Log.d("LOG", "populateOrderList: error querying customer table");
                     }
 
                     Order order = new Order(orderID, pizza, customer, date);
@@ -311,6 +331,11 @@ public class SQLiteAdapter extends SQLiteOpenHelper {
                     OrderRecordActivity.orders.add(order);
                 }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Log.d("LOG", "populateOrderList: error querying order table");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         db.close();

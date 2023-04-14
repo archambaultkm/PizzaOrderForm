@@ -95,7 +95,7 @@ public class MainActivity extends LanguageCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
 
                 //write preferences to the sharedpreferences when the app is closed based on where the switch is
-                editor.putBoolean("language", language);
+                editor.putBoolean("language", savedLanguage);
                 editor.apply();
             }
         });
